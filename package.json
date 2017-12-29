@@ -1,0 +1,30 @@
+{
+  "name": "the-h0m3st3ad-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A versatile platform for locally hosting home automation.",
+  "main": "homestead.js",
+  "scripts": {
+    "start": "nodejs homestead.js"
+  },
+  "author": "Jeremy Mallette",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "jsonwebtoken": "^8.1.0",
+    "kerberos": "0.0.23",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-cookie": "^1.0.4",
+    "passport-jwt": "^3.0.1",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.4.5"
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- Metadata -->
+<head>
+    <title>H0M35T3AD</title>
+
+    <!-- Basic -->
+    <meta name="author" content="Jeremy Mallette">
+    <meta name="last update" content="10/12/2017">
+    <meta name="description" content="Home page - H0M35T3AD Project">
+    <meta charset="UTF-8">
+
+    <!-- Graphics and Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="../res/img/favicon.ico" />
+
+    <!-- Compat -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../lib/handlebars-v4.0.11.js"></script>
+
+    <!-- Refresh Rate -->
+    <meta http-equiv="refresh" content="30">
+</head>
+
+<!-- Content -->
+<body>
+
+    <!-- Persistent Header -->
+    <div id="pers_header">
+        <img id="house_img"
+             src="../res/img/house.png"
+             alt="Image: house:":>
+        <h1 id="title_header">H0M35T3AD</h1>
+        <img id="settings_img"
+             src="../res/img/gear.png"
+             alt="Image: settings":>
+
+    </div>
+
+    <!-- Welcome Home Animation -->
+    <h1 id="wh_header">
+        <noscript>
+            Welcome Home.
+        </noscript>
+    </h1>
+
+    <hr>
+
+    <!-- Main Page Device Overview -->
+    <table id="hp_table">
+        <tr>
+            <th>Device ID</th>
+            <th>Service</th>
+            <th>Status</th>
+            <th>Last Updated</th>
+        </tr>
+        <!-- Note: Data rows filled dynamically by hp_table.js -->
+        <noscript>
+            <td>Loading this table requires javascript</td>
+        </noscript>
+    </table>
+
+    <hr>
+
+    <!-- Explanation of "Homestead" -->
+    <p id="homestead_explanation">
+    Self-sustainability, ingenuity, and the spirit of carving out one's stake
+    are the values that inspired homesteading long ago. H0M3ST3AD was created
+    with these very same ideals in mind. This platform allows the user to build
+    a "digital homestead," a fully-customizable platform to build a central
+    automated and self-sustaining living space. This has been achieved to some
+    degree using cloud servers and IoT solutions; however, H0M3ST3AD is more
+    versatile in that it can be run on a home server, with full offline
+    compatibility.
+    <br><br>
+    This is where "self-sustaining" truly comes into play. You
+    are the master of your own domain and if you want to run an automated
+    gardening system, then you should be able to do so independently. At the
+    same time, this does not mean that the system must be run offline, as there
+    are obvious advantages to having such a system connected to the internet.
+    Again, the idea is that the way the system runs is completely in your hand.
+    Should you want to access it via SSH, VPN, or even export it publically,
+    then you have the power to do so.
+    <br><br>
+    H0M3ST3AD is an ongoing project and features will continue to be added.
+    New tools will hopefully be made available on a regular basis to help create
+    your ideal system. For now, however, welcome home.
+    </p>
+
+    <script src="../scripts/hp_table.js"></script>
+    <script src="../scripts/welcome_animation.js"></script>
+
+</body>
+</html>
