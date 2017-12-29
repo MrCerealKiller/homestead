@@ -3,7 +3,7 @@
  * Author: Jeremy Mallette
  * Date Last Updated: 27/12/2017
  *
- * Note: Handlers Implementation**
+ * Note: Angular Implementation**
  */
 
 // Constants -------------------------------------------------------------------
@@ -47,11 +47,6 @@ mongoose.connection.on('error', function(err) {
 // Security --------------------------------------------------------------------
 app.disable('x-powered-by');
 app.use(cors());
-
-// Initialize Handlebars Engine ------------------------------------------------
-const handlebars = require("express-handlebars").create({defaultLayout:"index"});
-app.engine("handlebars", handlebars.engine);
-app.set("view engine", "handlebars");
 
 // Configs and Middleware ------------------------------------------------------
 // Configs
