@@ -3,7 +3,7 @@
  * Author: Jeremy Mallette
  * Date Last Updated: 27/12/2017
  *
- * Note: Powered using handlebars as middleware, allowing use of html and css.
+ * Note: Handlers Implementation**
  */
 
 // Constants -------------------------------------------------------------------
