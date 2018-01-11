@@ -1,0 +1,22 @@
+<!-- Persistent Navbar -->
+<div id="navbar">
+  <a [routerLink]="['/']">
+    <span>
+      <img id="logo" src="/assets/img/house.png" alt="Image: house:"/>
+      <h1 id="title_header">H0M35T3AD</h1>
+    </span>
+  </a>
+
+  <ul id="navbar_buttons">
+    <li class="navbar_button">
+      <a [routerLink]="['/profile']">
+        <img src="/assets/img/account.png" alt="Image: Profile"/>
+      </a>
+    </li>
+    <li class="navbar_button">
+      <a [routerLink]="['/settings']">
+        <img src="/assets/img/gear.png" alt="Image: settings"/>
+      </a>
+    </li>
+  </ul>
+</div>

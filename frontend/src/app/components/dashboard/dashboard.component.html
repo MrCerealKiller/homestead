@@ -1,0 +1,66 @@
+<div id="particles-js"></div>
+
+<!-- Welcome Home Animation -->
+<div>
+  <h1 class="title_header" id="wh_header">
+    <noscript>
+      Welcome Home.
+    </noscript>
+  </h1>
+</div>
+
+<hr>
+
+<!-- Main Page Device Overview -->
+<div>
+  <table id="hp_table">
+    <tr>
+      <th>Device ID</th>
+      <th>Service</th>
+      <th>Status</th>
+      <th>Last Updated</th>
+    </tr>
+    <!-- Note: Data rows filled dynamically by hp_table.js -->
+    <noscript>
+      <td>Loading this table requires javascript</td>
+    </noscript>
+  </table>
+</div>
+
+<hr>
+
+<!-- Explanation of "Homestead" -->
+<div>
+  <p id="homestead_explanation">
+  Self-sustainability, ingenuity, and the spirit of carving out one's stake
+  are the values that inspired homesteading long ago. H0M3ST3AD was created
+  with these very same ideals in mind. This platform allows the user to build
+  a "digital homestead," a fully-customizable platform to build a central
+  automated and self-sustaining living space. This has been achieved to some
+  degree using cloud servers and IoT solutions; however, H0M3ST3AD is more
+  versatile in that it can be run on a home server, with full offline
+  compatibility.
+  <br><br>
+  This is where "self-sustaining" truly comes into play. You
+  are the master of your own domain and if you want to run an automated
+  gardening system, then you should be able to do so independently. At the
+  same time, this does not mean that the system must be run offline, as there
+  are obvious advantages to having such a system connected to the internet.
+  Again, the idea is that the way the system runs is completely in your hand.
+  Should you want to access it via SSH, VPN, or even export it publically,
+  then you have the power to do so.
+  <br><br>
+  H0M3ST3AD is an ongoing project and features will continue to be added.
+  New tools will hopefully be made available on a regular basis to help create
+  your ideal system. For now, however, welcome home.
+  </p>
+</div>
+
+<script src="/scripts/particles.js"></script>
+<script>
+  particlesJS.load("particles-js", "/config/particles.json", function() {
+    Console.log("particles loaded successfully.");
+  });
+</script>
+<script src="/scripts/hp_table.js"></script>
+<script src="/scripts/welcome_animation.js"></script>
