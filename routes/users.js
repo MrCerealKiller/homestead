@@ -1,11 +1,12 @@
 /*
  * H0M3ST3AD Project Protected Routes
  * Author: Jeremy Mallette
- * Date Last Updated: 27/12/2017
+ * Date Last Updated: 11/01/2018
  */
 
 // Global Constants ------------------------------------------------------------
 const tokenExpiresInSecs = 259200 // 3 days
+const rememberMeTokenExpiresInSecs = 1814400 // 3 weeks
 
 // Imports ---------------------------------------------------------------------
 const express  = require('express');
