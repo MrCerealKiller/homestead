@@ -41,6 +41,11 @@ module.exports.getUserByUsername = function(username, callback) {
     User.findOne(query, callback);
 };
 
+module.exports.getUserByEmail = function(email, callback) {
+    var query = {email: email};
+    User.findOne(query, callback);
+};
+
 // Add User --------------------------------------------------------------------
 module.exports.addUser = function(user, callback) {
     bcrypt.genSalt(10, function(err, salt) {
@@ -64,4 +69,43 @@ module.exports.comparePassword = function(attempt, hash, callback) {
 
         callback(null, isMatch);
     });
+};
+
+// Update User Info ------------------------------------------------------------
+module.exports.updateUserById = function(user, callback) {
+  User.findById(user._id, function(err, dbUser) {
+    if (err) {
+      throw err;
+    }
+
+    dbUser.sms_number = user.sms_number;
+    dbUser.save(callback);
+  });
+};
+
+// Update Password -------------------------------------------------------------
+module.exports.updateUserPasswordById = function(user, callback) {
+  User.findById(user._id, function(err, dbUser) {
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(user.password, salt, function(err, hash) {
+            if (err) {
+                throw err;
+            }
+
+            dbUser.password = hash; // Replaces text password with encrypted one
+            dbUser.save(callback); // Saves the user
+        });
+    });
+  });
+};
+
+// Remove User -----------------------------------------------------------------
+module.exports.removeUserById = function(id, callback) {
+  User.findById(id, function(err, user) {
+    if (err) {
+      throw err;
+    }
+
+    user.remove(callback);
+  });
 };

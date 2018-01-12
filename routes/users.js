@@ -1,11 +1,12 @@
 /*
  * H0M3ST3AD Project Protected Routes
  * Author: Jeremy Mallette
- * Date Last Updated: 27/12/2017
+ * Date Last Updated: 11/01/2018
  */
 
 // Global Constants ------------------------------------------------------------
 const tokenExpiresInSecs = 259200 // 3 days
+const rememberMeTokenExpiresInSecs = 1814400 // 3 weeks
 
 // Imports ---------------------------------------------------------------------
 const express  = require('express');
@@ -26,16 +27,45 @@ router.post('/register', function(req, res, next) {
         sms_number: req.body.sms_number
     });
 
-    User.addUser(newUser, function(err, user) {
+    // Check is Username is already taken
+    User.getUserByUsername(newUser.username, function(err, user) {
         if (err) {
+            throw err;
+        }
+
+        if (user) {
             res.json({
                 success: false,
-                msg: 'Could not register user. Error: ' + err
+                msg: 'This username has already been taken.'
             });
         } else {
-            res.json({
-                success: true,
-                msg: user.username + ' was registered.'
+            // Check is email is already in use
+            User.getUserByEmail(newUser.email, function(err, user) {
+                if (err) {
+                    throw err;
+                }
+
+                if (user) {
+                    res.json({
+                        success: false,
+                        msg: 'This email address is already in use.'
+                    });
+                } else {
+                    // If all data is not in use, proceed to addUser
+                    User.addUser(newUser, function(err, user) {
+                        if (err) {
+                            res.json({
+                                success: false,
+                                msg: 'Could not register user. Error: ' + err
+                            });
+                        } else {
+                            res.json({
+                                success: true,
+                                msg: user.username + ' was registered.'
+                            });
+                        }
+                    });
+                }
             });
         }
     });

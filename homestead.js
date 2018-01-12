@@ -3,11 +3,12 @@
  * Author: Jeremy Mallette
  * Date Last Updated: 27/12/2017
  *
- * Note: Powered using handlebars as middleware, allowing use of html and css.
+ * Note: Angular Implementation**
  */
 
 // Constants -------------------------------------------------------------------
-const port = 3000; // TODO: Change this on release
+const port = 3000; // dev
+const port_rel = 80 // release
 
 // Imports ---------------------------------------------------------------------
 const express      = require('express');
@@ -17,18 +18,15 @@ const cookieParser = require('cookie-parser');
 const passport     = require('passport');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
-const favicon      = require('serve-favicon');
 const logger       = require('morgan');
 
 // Local Dependencies ----------------------------------------------------------
 const db_config   = require('./config/database.js');
 const credentials = require('./config/credentials.js');
-const routes      = require('./routes/index.js');
 const users       = require('./routes/users.js');
 
 // Paths -----------------------------------------------------------------------
 var staticPath = path.join(__dirname, 'public');
-var iconPath   = path.join(__dirname, 'public', 'res', 'img', 'favicon.ico');
 
 // Initialize App --------------------------------------------------------------
 const app = express();
@@ -48,16 +46,10 @@ mongoose.connection.on('error', function(err) {
 app.disable('x-powered-by');
 app.use(cors());
 
-// Initialize Handlebars Engine ------------------------------------------------
-const handlebars = require("express-handlebars").create({defaultLayout:"index"});
-app.engine("handlebars", handlebars.engine);
-app.set("view engine", "handlebars");
-
 // Configs and Middleware ------------------------------------------------------
 // Configs
 app.use(logger('dev'));
 app.use(express.static(staticPath));
-app.use(favicon(iconPath));
 
 // Parsers
 app.use(bodyParser.json());
@@ -72,7 +64,6 @@ require('./config/passport.js')(passport);
 app.set('port', process.env.PORT || port);
 
 // Routes ----------------------------------------------------------------------
-app.use('/', routes);
 app.use('/users', users);
 
 // Error Handlers --------------------------------------------------------------

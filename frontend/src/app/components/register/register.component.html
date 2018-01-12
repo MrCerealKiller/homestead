@@ -1,0 +1,25 @@
+<h1>Register</h1>
+
+<form (submit)="onRegisterSubmit()">
+  <div>
+    <label>username</label>
+    <input type="text" [(ngModel)]="username" name="username">
+  </div>
+  <div>
+    <label>email</label>
+    <input type="text" [(ngModel)]="email" name="email">
+  </div>
+  <div>
+    <label>sms_number</label>
+    <input type="text" [(ngModel)]="sms_number" name="sms_number">
+  </div>
+  <div>
+    <label>password</label>
+    <input type="password" [(ngModel)]="password" name="password">
+  </div>
+  <div>
+    <label>passwordConf</label>
+    <input type="password" [(ngModel)]="passwordConf" name="passwordConf">
+  </div>
+  <input type="submit">
+</form>
