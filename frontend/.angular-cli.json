@@ -1,16 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "frontend"
+    "name": "H0M3ST3AD-Frontend"
   },
   "apps": [
     {
       "root": "src",
       "outDir": "../public",
-      "assets": [
-        "assets",
-        "favicon.ico"
-      ],
+      "assets": ["assets"],
       "index": "index.html",
       "main": "main.ts",
       "polyfills": "polyfills.ts",
@@ -18,9 +15,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "styles.css"
-      ],
+      "styles": ["styles.css"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
