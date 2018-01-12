@@ -73,7 +73,7 @@ p, q {
     color: #DC143C;
     font-family: "Courier";
     font-size: 5em;
-    font-style: italic; /* TODO : Maybe change? Design choice */
+    /*font-style: italic; /* TODO : Maybe change? Design choice */
     text-align: center;
 }
 
