@@ -1,3 +1,9 @@
+/*
+ * H0M3ST3AD Registration Input Validation Service
+ * Author: Jeremy Mallette
+ * Date Last Updated: 11/01/2018
+ */
+
 import { Injectable } from '@angular/core';
 
 @Injectable()
