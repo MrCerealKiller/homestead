@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthorizeService } from '../../services/authorize.service';
 
 const translations = ["welcome home.",
                       "bienvenue chez vous.",
@@ -15,11 +19,19 @@ export class DashboardComponent implements OnInit {
   // Members related to the typing animation
   message: String;
   msgCount: number = 0;
-  messageTimer: Object;
+  messageTimer: number;
 
-  constructor() { }
+  // Stores the user's devices to display in the table
+  devices: Object[];
 
-  ngOnInit() { }
+  constructor(private m_fmService: FlashMessagesService,
+              private m_authService: AuthorizeService,
+              private m_router: Router) { }
+
+  ngOnInit() {
+    // Fill table with values from database
+    this.updateDevices();
+  }
 
   ngAfterViewInit() {
     // Choose translation to display
@@ -40,5 +52,9 @@ export class DashboardComponent implements OnInit {
     } else {
       this.msgCount++;
     }
+  }
+
+  updateDevices() {
+
   }
 }

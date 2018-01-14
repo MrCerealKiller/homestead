@@ -14,6 +14,10 @@ const DeviceSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  user: {
+    type: String,
+    required: true
+  },
   deviceService: {
     type: String,
     required: true
@@ -26,15 +30,15 @@ const DeviceSchema = mongoose.Schema({
     type: String,
     required: false
   },
-  dateLastUpdated: {
-    type: Date,
-    required: false
-  }
+  // dateLastUpdated: {
+  //   type: Date,
+  //   required: false
+  // }
 });
 
 const Device = module.exports = mongoose.model('Device', DeviceSchema);
 
-// Getters for Devuce ----------------------------------------------------------
+// Getters for Device ----------------------------------------------------------
 module.exports.getDeviceById = function(id, callback) {
   Device.findById(id, callback);
 };
@@ -49,9 +53,14 @@ module.exports.getDeviceByIpAddress = function(ipAddress, callback) {
   Device.findOne(query, callback);
 };
 
+module.exports.getUserDevices = function(username, callback) {
+  var query = {user: username};
+  Device.find(query, callback);
+}
+
 // Add Device ------------------------------------------------------------------
 module.exports.addDevice = function(device, callback) {
-  Device.save(callback);
+  device.save(callback);
 };
 
 // Update Device ---------------------------------------------------------------
@@ -62,6 +71,7 @@ module.exports.updateDeviceById = function(device, callback) {
     }
 
     dbDevice.customId = device.customId;
+    dbDevice.userId = device.userId;
     dbDevice.deviceService = device.deviceService;
     dbDevice.lastIpAddress = device.lastIpAddress;
     dbDevice.lastStatusUpdate = device.lastStatusUpdate;
