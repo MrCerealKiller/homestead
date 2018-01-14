@@ -116,6 +116,3 @@
 .dropbutton:hover {
     background-color: #F6CECE;
 }
-
-/* This class is toggled to display dropdown items */
-.show {display:block;}

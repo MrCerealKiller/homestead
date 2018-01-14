@@ -1,0 +1,22 @@
+/* This class is toggled to display dropdown items */
+.show {
+  display:block;
+}
+
+/* This class disables the user highlight/select of an element */
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* This class enables the user highlight/select of an element */
+.selectEnable {
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
+}
