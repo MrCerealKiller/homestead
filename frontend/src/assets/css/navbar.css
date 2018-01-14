@@ -5,22 +5,27 @@
  */
 
 /* Whole Navbar */
-#navbar {
+.navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
+    min-width: 450px;
     height: 50px;
 
     background-color: #DC143C;
 }
 
 /* Logo and Site Name */
-#navbar #logo {
+.navbar #logo {
     float: left;
     padding-left: 10px;
     width: 50px;
     height: 50px;
 }
 
-#navbar #title_header {
+.navbar #title {
     /* Make inline-and center vertically */
     display: inline-block;
     position: relative;
@@ -37,7 +42,7 @@
 }
 
 /* Navbar Buttons */
-#navbar_buttons {
+.navbar-right-list {
     float: right;
     margin: 0;
     padding: 0;
@@ -69,3 +74,45 @@
     width: 50px;
     height: 50px;
 }
+
+/* Dropdown Menu -------------------------------------------------------------*/
+
+.navbar-dropdown {
+    position: relative; /* Relative Position is needed */
+    display: inline-block;
+}
+
+.navbar-dropdown-content {
+    display: none;       /* Is Hidden by default */
+    position: absolute;
+    right: 0;
+    background-color: #F2F2F2;
+    min-width: 160px;
+    margin-top: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+
+/* Dropdown Button */
+.dropbutton {
+    display: block;
+    border: none;
+    width: 100%;
+    background-color: #F2F2F2;
+    padding: 16px;
+
+    color: #151515;
+    font-family: helvetica;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbutton:hover, .dropbutton:focus {
+    background-color: #F6CECE;
+}
+
+/* This class is toggled to display dropdown items */
+.show {display:block;}

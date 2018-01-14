@@ -1,22 +1,29 @@
 <!-- Persistent Navbar -->
-<div id="navbar">
+<div class="navbar">
   <a [routerLink]="['/']">
     <span>
       <img id="logo" src="/assets/img/house.png" alt="Image: house:"/>
-      <h1 id="title_header">H0M35T3AD</h1>
+      <h1 id="title">H0M35T3AD</h1>
     </span>
   </a>
 
-  <ul id="navbar_buttons">
+  <ul class="navbar-right-list">
     <li class="navbar_button">
       <a [routerLink]="['/profile']">
         <img src="/assets/img/account.png" alt="Image: Profile"/>
       </a>
     </li>
     <li class="navbar_button">
-      <a [routerLink]="['/settings']">
-        <img src="/assets/img/gear.png" alt="Image: settings"/>
-      </a>
+      <div class="navbar-dropdown">
+        <a (click)="onSettingsClicked()">
+          <img class="navbar-dropdown-init" src="/assets/img/gear.png" alt="Image: settings"/>
+        </a>
+        <div class="navbar-dropdown-content" id="settingsDropdown">
+          <button class="dropbutton" [routerLink]="['/settings/account']">Account Settings</button>
+          <button class="dropbutton" [routerLink]="['/settings/devices']">Device Settings</button>
+          <button class="dropbutton" (click)="onLogoutClicked()">Logout</button>
+        </div>
+      </div>
     </li>
   </ul>
 </div>

@@ -10,9 +10,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { DeviceSettingsComponent } from './components/device-settings/device-settings.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthorizeService } from './services/authorize.service';
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'settings', component: SettingsComponent}
+  {path: 'settings/account', component: AccountSettingsComponent},
+  {path: 'settings/devices', component: DeviceSettingsComponent}
 ]
 
 @NgModule({
@@ -33,9 +35,10 @@ const routes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    SettingsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountSettingsComponent,
+    DeviceSettingsComponent
   ],
   imports: [
     BrowserModule,

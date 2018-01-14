@@ -25,46 +25,31 @@ html {
 }
 
 body {
-    position: relative;
     margin: 0;  /* Fixes bug... */
     padding: 0; /* Somehow didn't inherit from all... */
 
     background-color: #DCDCDC;
 }
 
-p, q {
-    margin: 10px;
-    padding: 10px;
+p, q, a {
+    margin: 16px;
+    padding: 16px;
 
     color: #151515;
     font-family: helvetica;
+    font-size: 1em;
 }
 
 /*  Misc. Classes
 ------------------------------------------------------------------------------*/
 
-.page_header {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.error_header {
-    display: block;
-    padding: 50px;
-
-    color: #DC143C;
-    font-family: Courier;
-}
-
-.content_body {
+.content-body {
     position: relative;
-    margin-top: 50px;
+    margin-top: 50px;     /* Prevent overflow into fixed navbar */
+    z-index: 0;
 }
 
-.title_header {
+.title {
     margin: 50px;
     margin-top: 75px;
     padding: 50px;
@@ -77,13 +62,18 @@ p, q {
     text-align: center;
 }
 
-/* Misc. Object
-------------------------------------------------------------------------------*/
-#silhouette {
-  object-fit: contain;
+.error-title {
+    display: block;
+    padding: 50px;
+
+    color: #DC143C;
+    font-family: Courier;
 }
 
-#particles-js {
+/* Misc. Object
+------------------------------------------------------------------------------*/
+
+#particles {
     position: absolute;
     top: 0;
     left: 0;
@@ -92,7 +82,7 @@ p, q {
     height: calc(100% - 500px);
 }
 
-#homestead_explanation {
+#homestead-explanation {
     padding: 30px 60px;
     text-align: center;
 }
