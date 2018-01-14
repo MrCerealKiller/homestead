@@ -9,10 +9,12 @@
 ------------------------------------------------------------------------------*/
 @import "./assets/css/navbar.css";
 @import "./assets/css/hp_table.css";
+@import "./assets/css/forms.css";
 @import "./assets/css/containers.css";
 @import "./assets/css/buttons.css";
 @import "./assets/css/links.css";
 @import "./assets/css/generic-classes.css";
+@import "./assets/css/flash-messages.css";
 @import "./assets/css/simple-animations.css";
 
 /*  Generic Styles

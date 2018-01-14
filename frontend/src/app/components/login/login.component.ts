@@ -26,14 +26,16 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
 
-    this.m_authService.authenticateUser(user).subscribe(data => {
-      if (data.success) {
-        this.m_authService.storeUserData(data.token, data.user);
-        this.m_router.navigate(['/dashboard']);
-      } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
-        this.m_router.navigate(['/login']);
-      }
-    })
+    if (user.username) {
+      this.m_authService.authenticateUser(user).subscribe(data => {
+        if (data.success) {
+          this.m_authService.storeUserData(data.token, data.user);
+          this.m_router.navigate(['/dashboard']);
+        } else {
+          this.m_fmService.show(data.msg, {cssClass: 'alert-danger fade-in-out', timeout: 6000});
+          this.m_router.navigate(['/login']);
+        }
+      });
+    }
   }
 }

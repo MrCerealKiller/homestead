@@ -12,8 +12,50 @@
 
     opacity: 0;
 
-    -webkit-animation: slowPulse 5s infinite 2s;
+    -webkit-animation: slowPulse 7s infinite 2s;
     -webkit-animation-timing-function: ease-in-out;
-    animation: slowPulse 5s infinite 2s;
+    animation: slowPulse 7s infinite 2s;
     animation-timing-function: ease-in-out;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.fade-in {
+  opacity: 0;
+  -webkit-animation: fade 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: normal;
+  animation: fade 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+}
+
+.fade-out {
+  opacity: 1;
+  -webkit-animation: fade 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: reverse;
+  animation: fade 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+
+.fade-in-out {
+  opacity: 0;
+  -webkit-animation: fade 3s 2;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: reverse;
+  -webkit-animation-direction: alternate;
+  animation: fade 3s 2;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
 }
