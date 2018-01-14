@@ -1,25 +1,30 @@
-<h1>Register</h1>
+<div>
+  <h1 class="title">Register</h1>
+</div>
 
-<form (submit)="onRegisterSubmit()">
-  <div>
-    <label>username</label>
-    <input type="text" [(ngModel)]="username" name="username">
+<form class="register-form" (submit)="onRegisterSubmit()">
+  <div class="container">
+    <label class="form-label">Username: </label>
+    <input class="form-textbox" type="text" [(ngModel)]="username" name="username">
   </div>
-  <div>
-    <label>email</label>
-    <input type="text" [(ngModel)]="email" name="email">
+  <div class="container">
+    <label class="form-label">Preferred Email: </label>
+    <input class="form-textbox" type="text" [(ngModel)]="email" name="email">
   </div>
-  <div>
-    <label>sms_number</label>
-    <input type="text" [(ngModel)]="sms_number" name="sms_number">
+  <div class="container">
+    <label class="form-label">Phone Number (Optional): </label>
+    <input class="form-textbox" type="text" [(ngModel)]="sms_number" name="sms_number">
+    <p class="form-explanation">This will be used to send you custom alerts, if desired.</p>
   </div>
-  <div>
-    <label>password</label>
-    <input type="password" [(ngModel)]="password" name="password">
+  <div class="container">
+    <label class="form-label">Password: </label>
+    <input class="form-textbox" type="password" [(ngModel)]="password" name="password">
   </div>
-  <div>
-    <label>passwordConf</label>
-    <input type="password" [(ngModel)]="passwordConf" name="passwordConf">
+  <div class="container">
+    <label class="form-label">Confirm Passwer: </label>
+    <input class="form-textbox" type="password" [(ngModel)]="passwordConf" name="passwordConf">
   </div>
-  <input type="submit">
+  <div class="container">
+    <input class="button-dark selectDisable" type="submit">
+  </div>
 </form>
