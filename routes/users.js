@@ -16,7 +16,8 @@ const jwt      = require('jsonwebtoken');
 
 // Local Dependencies ----------------------------------------------------------
 const db_config = require('../config/database.js');
-const User      = require('../models/user.js')
+const User      = require('../models/user.js');
+const Device    = require('../models/device.js');
 
 // Register (Post) -------------------------------------------------------------
 router.post('/register', function(req, res, next) {
@@ -117,6 +118,52 @@ router.post('/auth', function(req, res, next) {
     });
 });
 
+// Get Users Devices -----------------------------------------------------------
+router.post('/devices/list', function(req, res, next) {
+  var username = req.body.username;
+
+  Device.getUserDevices(username, function(err, devices) {
+    if (err) {
+      res.json({
+        success: false,
+        msg: ('Could not retrieve devices. Error' + err),
+        devices: undefined
+      });
+    } else {
+      res.json({
+        success: true,
+        msg: 'Retrieved user\s devices',
+        devices: devices
+      });
+    }
+  });
+});
+
+// Add Device ------------------------------------------------------------------
+router.post('/devices/add', function(req, res, next) {
+  var newDevice = new Device({
+      customId: req.body.customId,
+      user: req.body.user,
+      deviceService: req.body.deviceService,
+      lastIpAddress: req.body.lastIpAddress,
+      lastStatusUpdate: req.body.lastStatusUpdate,
+      //dateLastUpdated: Date()
+  });
+
+  Device.addDevice(newDevice, function(err, device) {
+      if (err) {
+          res.json({
+              success: false,
+              msg: 'Could not save device. Error: ' + err
+          });
+      } else {
+          res.json({
+              success: true,
+              msg: device.customId + ' was saved.'
+          });
+      }
+  });
+});
 // User Dashboard (Get) --------------------------------------------------------
 router.get('/dashboard', function(req, res, next) {
 

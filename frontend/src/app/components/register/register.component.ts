@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
     if (validateResult.isErr) {
       //console.log(validateResult.msg);
-      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 5000});
+      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
       return false;
     }
 
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
         this.m_fmService.show("Your account has been registered.", {cssClass: 'alert-success', timeout: 5000});
         this.m_router.navigate(['/login']);
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
         this.m_router.navigate(['/register']);
       }
     });

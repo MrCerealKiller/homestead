@@ -8,8 +8,14 @@
 /*  Imports
 ------------------------------------------------------------------------------*/
 @import "./assets/css/navbar.css";
-@import "./assets/css/hp_table.css";
+@import "./assets/css/dashboard-table.css";
+@import "./assets/css/forms.css";
+@import "./assets/css/containers.css";
+@import "./assets/css/buttons.css";
 @import "./assets/css/links.css";
+@import "./assets/css/generic-classes.css";
+@import "./assets/css/flash-messages.css";
+@import "./assets/css/simple-animations.css";
 
 /*  Generic Styles
 ------------------------------------------------------------------------------*/
@@ -25,65 +31,56 @@ html {
 }
 
 body {
-    position: relative;
     margin: 0;  /* Fixes bug... */
     padding: 0; /* Somehow didn't inherit from all... */
 
     background-color: #DCDCDC;
 }
 
-p, q {
-    margin: 10px;
-    padding: 10px;
+p, q, a {
+    margin: 16px;
+    padding: 16px;
 
     color: #151515;
     font-family: helvetica;
+    font-size: 1em;
 }
 
 /*  Misc. Classes
 ------------------------------------------------------------------------------*/
 
-.page_header {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.error_header {
-    display: block;
-    padding: 50px;
-
-    color: #DC143C;
-    font-family: Courier;
-}
-
-.content_body {
+.content-body {
     position: relative;
-    margin-top: 50px;
+    margin-top: 48px;     /* Prevent overflow into fixed navbar */
+    z-index: 0;
+    min-width: 400px;
 }
 
-.title_header {
+.title {
     margin: 50px;
     margin-top: 75px;
     padding: 50px;
     height: 50px;
 
     color: #DC143C;
-    font-family: "Courier";
-    font-size: 5em;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 4em;
     /*font-style: italic; /* TODO : Maybe change? Design choice */
     text-align: center;
 }
 
-/* Misc. Object
-------------------------------------------------------------------------------*/
-#silhouette {
-  object-fit: contain;
+.error-title {
+    display: block;
+    padding: 50px;
+
+    color: #DC143C;
+    font-family: "Courier New", Courier, monospace;
 }
 
-#particles-js {
+/* Misc. Object
+------------------------------------------------------------------------------*/
+
+#particles {
     position: absolute;
     top: 0;
     left: 0;
@@ -92,7 +89,11 @@ p, q {
     height: calc(100% - 500px);
 }
 
-#homestead_explanation {
-    padding: 30px 60px;
+#homestead-explanation {
+    padding: 64px;
+    margin: 64px 0px 32px 0px;
+
+    background-color: #F2F2F2;
+    box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);
     text-align: center;
 }

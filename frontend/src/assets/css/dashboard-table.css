@@ -4,7 +4,7 @@
  * Last Updated: 10/12/2017
  */
 
-#hp_table {
+.dashboard-table {
     margin: 50px auto;
     padding: 50px;
 
@@ -15,7 +15,7 @@
     border-spacing: 0px;
 }
 
-#hp_table th {
+.dashboard-table .dashboard-table-header {
     padding: 10px;
 
     background-color: #DC143C;
@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-#hp_table td {
+.dashboard-table .dashboard-table-cell {
     padding: 10px;
 
     font-family: helvetica;
@@ -35,11 +35,11 @@
 }
 
 /* Alternate Row Colours */
-#hp_table_row tr:nth-child(even) {
+.dashboard-table .dashboard-table-row:nth-child(even) {
     background-color: #F2F2F2;
 }
 
 /* Highlight Hover Row */
-#hp_table tr:hover {
+.dashboard-table .dashboard-table-row:hover {
     background-color: #F6CECE;
 }

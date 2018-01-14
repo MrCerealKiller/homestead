@@ -1,8 +1,8 @@
-<div id="particles-js"></div>
+<div id="particles"></div>
 
 <!-- Welcome Home Animation -->
 <div>
-  <h1 class="title_header" id="wh_header">
+  <h1 class="title" id="welcome-home">
     <noscript>
       Welcome Home.
     </noscript>
@@ -13,16 +13,26 @@
 
 <!-- Main Page Device Overview -->
 <div>
-  <table id="hp_table">
+  <table class="dashboard-table">
     <tr>
-      <th>Device ID</th>
-      <th>Service</th>
-      <th>Status</th>
-      <th>Last Updated</th>
+      <th class="dashboard-table-header">Device ID</th>
+      <th class="dashboard-table-header">Service</th>
+      <th class="dashboard-table-header">IP Address</th>
+      <th class="dashboard-table-header">Status</th>
+      <th class="dashboard-table-header">Last Updated</th>
     </tr>
+    <tbody>
+      <tr class="dashboard-table-row" *ngFor="let device of devices">
+        <td class="dashboard-table-cell">{{device.customId}}</td>
+        <td class="dashboard-table-cell">{{device.deviceService}}</td>
+        <td class="dashboard-table-cell">{{device.lastIpAddress}}</td>
+        <td class="dashboard-table-cell">{{device.lastStatusUpdate}}</td>
+        <td class="dashboard-table-cell">{{device.dateLastUpdated}}</td>
+      </tr>
+    </tbody>
     <!-- Note: Data rows filled dynamically by hp_table.js -->
     <noscript>
-      <td>Loading this table requires javascript</td>
+      <td class="dashboard-table-cell">Loading this table requires javascript</td>
     </noscript>
   </table>
 </div>
@@ -31,7 +41,7 @@
 
 <!-- Explanation of "Homestead" -->
 <div>
-  <p id="homestead_explanation">
+  <p id="homestead-explanation">
   Self-sustainability, ingenuity, and the spirit of carving out one's stake
   are the values that inspired homesteading long ago. H0M3ST3AD was created
   with these very same ideals in mind. This platform allows the user to build
@@ -58,7 +68,7 @@
 
 <script src="/scripts/particles.js"></script>
 <script>
-  particlesJS.load("particles-js", "/config/particles.json", function() {
+  particlesJS.load("particles", "assets/config/particles.json", function() {
     Console.log("particles loaded successfully.");
   });
 </script>

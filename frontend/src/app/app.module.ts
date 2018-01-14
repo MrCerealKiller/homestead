@@ -10,12 +10,15 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { DeviceSettingsComponent } from './components/device-settings/device-settings.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthorizeService } from './services/authorize.service';
+import { DevicePipeService } from './services/device-pipe.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -23,7 +26,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent},
-  {path: 'settings', component: SettingsComponent}
+  {path: 'settings/account', component: AccountSettingsComponent},
+  {path: 'settings/devices', component: DeviceSettingsComponent},
+  {path: 'about', component: AboutComponent}
 ]
 
 @NgModule({
@@ -33,9 +38,11 @@ const routes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    SettingsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AccountSettingsComponent,
+    DeviceSettingsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +53,8 @@ const routes: Routes = [
   ],
   providers: [
     ValidateService,
-    AuthorizeService
+    AuthorizeService,
+    DevicePipeService
   ],
   bootstrap: [AppComponent]
 })

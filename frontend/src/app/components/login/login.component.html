@@ -1,13 +1,17 @@
-<h1>Login</h1>
+<div>
+  <h1 class="title">Login</h1>
+</div>
 
-<form (submit)="onLoginSubmit()">
-  <div>
-    <label>username</label>
-    <input type="text" [(ngModel)]="username" name="username">
+<form class="login-form" (submit)="onLoginSubmit()">
+  <div class="container">
+    <label class="form-label">Username:</label>
+    <input class="form-textbox" type="text" [(ngModel)]="username" name="username">
   </div>
-  <div>
-    <label>password</label>
-    <input type="password" [(ngModel)]="password" name="password">
+  <div class="container">
+    <label class="form-label">Password:</label>
+    <input class="form-textbox" type="password" [(ngModel)]="password" name="password">
   </div>
-  <input type="submit">
+  <div class="container">
+    <input class="button-dark selectDisable" type="submit"/>
+  </div>
 </form>
