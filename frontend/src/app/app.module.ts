@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { DeviceSettingsComponent } from './components/device-settings/device-settings.component';
+import { AboutComponent } from './components/about/about.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthorizeService } from './services/authorize.service';
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'settings/account', component: AccountSettingsComponent},
-  {path: 'settings/devices', component: DeviceSettingsComponent}
+  {path: 'settings/devices', component: DeviceSettingsComponent},
+  {path: 'about', component: AboutComponent}
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     AccountSettingsComponent,
-    DeviceSettingsComponent
+    DeviceSettingsComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

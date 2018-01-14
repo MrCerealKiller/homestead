@@ -9,8 +9,11 @@
 ------------------------------------------------------------------------------*/
 @import "./assets/css/navbar.css";
 @import "./assets/css/hp_table.css";
+@import "./assets/css/containers.css";
+@import "./assets/css/buttons.css";
 @import "./assets/css/links.css";
 @import "./assets/css/generic-classes.css";
+@import "./assets/css/simple-animations.css";
 
 /*  Generic Styles
 ------------------------------------------------------------------------------*/
@@ -46,8 +49,9 @@ p, q, a {
 
 .content-body {
     position: relative;
-    margin-top: 50px;     /* Prevent overflow into fixed navbar */
+    margin-top: 48px;     /* Prevent overflow into fixed navbar */
     z-index: 0;
+    min-width: 400px;
 }
 
 .title {
@@ -57,8 +61,8 @@ p, q, a {
     height: 50px;
 
     color: #DC143C;
-    font-family: "Courier";
-    font-size: 5em;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 4em;
     /*font-style: italic; /* TODO : Maybe change? Design choice */
     text-align: center;
 }
@@ -68,7 +72,7 @@ p, q, a {
     padding: 50px;
 
     color: #DC143C;
-    font-family: Courier;
+    font-family: "Courier New", Courier, monospace;
 }
 
 /* Misc. Object
@@ -84,6 +88,10 @@ p, q, a {
 }
 
 #homestead-explanation {
-    padding: 30px 60px;
+    padding: 64px;
+    margin: 64px 0px 32px 0px;
+
+    background-color: #F2F2F2;
+    box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);
     text-align: center;
 }

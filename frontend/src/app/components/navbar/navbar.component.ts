@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onSettingsClicked() {
-    document.getElementById("settingsDropdown").classList.toggle("show");
+    document.getElementById('settingsDropdown').classList.toggle('show');
   }
 
   onLogoutClicked() {
@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
 
   onOutsideClicked(event) {
     if (!event.target.matches('.navbar-dropbutton') && !event.target.matches('.navbar-dropdown-init')) {
-      var settingsDropdown = document.getElementById("settingsDropdown");
+      var settingsDropdown = document.getElementById('settingsDropdown');
       if (settingsDropdown.classList.contains('show')) {
         settingsDropdown.classList.remove('show');
       }

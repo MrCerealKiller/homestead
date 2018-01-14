@@ -10,7 +10,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 99;
     width: 100%;
     min-width: 350px;
     height: 48px;
@@ -92,9 +92,10 @@
     display: none;            /* Is Hidden by default */
     position: absolute;
     right: 0;
-    background-color: #F2F2F2;
     min-width: 160px;
     margin-top: 10px;
+
+    background-color: #F2F2F2;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 999;
 }
@@ -103,9 +104,9 @@
     display: block;
     border: none;
     width: 100%;
-    background-color: #F2F2F2;
     padding: 16px;
 
+    background-color: #F2F2F2;
     color: #151515;
     font-family: helvetica;
     font-size: 1em;

@@ -1,13 +1,26 @@
-<h1 class="title_header">Welcome to your new home</h1>
+<img class="backdrop-img selectDisable"
+     id="homestead-img"
+     src="/assets/img/homestead-colorified-cropped.png"
+     alt="img-homestead"/>
 
-<!--img id="silhouette" src="/assets/img/city_silhouette.png" alt="Img: Silhouette"/-->
+<img class="backdrop-img selectDisable"
+     id="homestead-img-ascii"
+     src="/assets/img/homestead-ascii-cropped.png"
+     alt="img-homestead-ascii"/>
 
-<button [routerLink]="['/register']">Register</button>
-<button [routerLink]="['/login']">Login</button>
+<div>
+  <h1 class="title">Your new home awaits</h1>
+</div>
+
+<div class="homepage-button-group">
+    <button class="button-dark" [routerLink]="['/register']">Register</button>
+    <button class="button-light" [routerLink]="['/login']">Login</button>
+    <button class="button-dark" [routerLink]="['/about']">About</button>
+</div>
 
 <!-- Explanation of "Homestead" -->
-<div>
-  <p id="homestead_explanation">
+<div >
+  <p id="homestead-explanation">
   Self-sustainability, ingenuity, and the spirit of carving out one's stake
   are the values that inspired homesteading long ago. H0M3ST3AD was created
   with these very same ideals in mind. This platform allows the user to build
