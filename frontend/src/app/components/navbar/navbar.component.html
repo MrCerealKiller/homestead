@@ -1,19 +1,25 @@
-<!-- Persistent Navbar -->
+<!-- Navbar -->
 <div class="navbar">
-  <a [routerLink]="['/']">
-    <span>
-      <img id="logo" src="/assets/img/house.png" alt="Image: house:"/>
-      <h1 id="title">H0M35T3AD</h1>
-    </span>
-  </a>
+  <ul class="navbar-list-left">
+    <li class="navbar-button">
+      <a [routerLink]="['/']">
+          <img src="/assets/img/house.png" alt="Image: house:"/>
+      </a>
+    </li>
+    <li class="navbar-button">
+      <a [routerLink]="['/']">
+        <h1 id="navbar-title">H0M35T3AD</h1>
+      </a>
+    </li>
+  </ul>
 
-  <ul class="navbar-right-list">
-    <li class="navbar_button">
+  <ul class="navbar-list-right">
+    <li class="navbar-button">
       <a [routerLink]="['/profile']">
         <img src="/assets/img/account.png" alt="Image: Profile"/>
       </a>
     </li>
-    <li class="navbar_button">
+    <li class="navbar-button">
       <div class="navbar-dropdown">
         <a (click)="onSettingsClicked()">
           <img class="navbar-dropdown-init" src="/assets/img/gear.png" alt="Image: settings"/>
