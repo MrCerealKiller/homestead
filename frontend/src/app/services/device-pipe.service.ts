@@ -14,4 +14,12 @@ export class DevicePipeService {
     return this.m_http.post('http://localhost:3000/users/devices/list',
       user, {headers: headers}).map(res => res.json());
   }
+
+  addDevice(device) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.m_http.post('http://localhost:3000/users/devices/add',
+      device, {headers: headers}).map(res => res.json());
+  }
 }

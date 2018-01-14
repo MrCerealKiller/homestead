@@ -120,9 +120,6 @@ router.post('/auth', function(req, res, next) {
 
 // Get Users Devices -----------------------------------------------------------
 router.post('/devices/list', function(req, res, next) {
-
-  console.error('\n\n\nGETS HERE\n\n\n' + username)
-
   var username = req.body.username;
 
   Device.getUserDevices(username, function(err, devices) {

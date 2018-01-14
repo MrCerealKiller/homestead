@@ -18,6 +18,7 @@ import { AboutComponent } from './components/about/about.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthorizeService } from './services/authorize.service';
+import { DevicePipeService } from './services/device-pipe.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -52,7 +53,8 @@ const routes: Routes = [
   ],
   providers: [
     ValidateService,
-    AuthorizeService
+    AuthorizeService,
+    DevicePipeService
   ],
   bootstrap: [AppComponent]
 })

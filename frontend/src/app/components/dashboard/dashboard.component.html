@@ -21,13 +21,13 @@
       <th class="dashboard-table-header">Status</th>
       <th class="dashboard-table-header">Last Updated</th>
     </tr>
-    <tbody ng-repeat="x in devices">
-      <tr class="dashboard-table-row">
-        <td class="dashboard-table-cell">{{x.customId}}</td>
-        <td class="dashboard-table-cell">{{x.deviceService}}</td>
-        <td class="dashboard-table-cell">{{x.lastIpAddress}}</td>
-        <td class="dashboard-table-cell">{{x.lastStatusUpdate}}</td>
-        <td class="dashboard-table-cell">{{x.dateLastUpdated}}</td>
+    <tbody>
+      <tr class="dashboard-table-row" *ngFor="let device of devices">
+        <td class="dashboard-table-cell">{{device.customId}}</td>
+        <td class="dashboard-table-cell">{{device.deviceService}}</td>
+        <td class="dashboard-table-cell">{{device.lastIpAddress}}</td>
+        <td class="dashboard-table-cell">{{device.lastStatusUpdate}}</td>
+        <td class="dashboard-table-cell">{{device.dateLastUpdated}}</td>
       </tr>
     </tbody>
     <!-- Note: Data rows filled dynamically by hp_table.js -->

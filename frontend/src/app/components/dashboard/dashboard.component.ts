@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthorizeService } from '../../services/authorize.service';
+import { DevicePipeService } from '../../services/device-pipe.service';
 
 const translations = ["welcome home.",
                       "bienvenue chez vous.",
@@ -22,15 +24,23 @@ export class DashboardComponent implements OnInit {
   messageTimer: number;
 
   // Stores the user's devices to display in the table
-  devices: Object[];
+  public devices = [{
+    customId: 'test',
+    deviceService: 'test',
+    lastIpAddress: 'test',
+    lastStatusUpdate: 'test',
+    dateLastUpdated: 'test'
+  }];
 
   constructor(private m_fmService: FlashMessagesService,
               private m_authService: AuthorizeService,
-              private m_router: Router) { }
-
-  ngOnInit() {
+              private m_devicePipeService: DevicePipeService,
+              private m_router: Router) {
     // Fill table with values from database
     this.updateDevices();
+  }
+
+  ngOnInit() {
   }
 
   ngAfterViewInit() {
@@ -55,6 +65,13 @@ export class DashboardComponent implements OnInit {
   }
 
   updateDevices() {
-
+    var user = localStorage.getItem('user');
+    this.m_devicePipeService.getUserDevices(user).subscribe(data => {
+      if (data.success) {
+        this.devices = data.devices;
+      } else {
+        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+      }
+    })
   }
 }
