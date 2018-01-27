@@ -9,7 +9,8 @@ import { DevicePipeService } from '../../services/device-pipe.service';
 const translations = ["welcome home.",
                       "bienvenue chez vous.",
                       "おかえり.",
-                      "benvenuto a casa."];
+                      "benvenuto a casa.",
+                      "boooork."];
 
 @Component({
   selector: 'app-dashboard',
