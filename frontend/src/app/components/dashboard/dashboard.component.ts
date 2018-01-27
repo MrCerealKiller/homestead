@@ -9,7 +9,8 @@ import { DevicePipeService } from '../../services/device-pipe.service';
 const translations = ["welcome home.",
                       "bienvenue chez vous.",
                       "おかえり.",
-                      "benvenuto a casa."];
+                      "benvenuto a casa.",
+                      "boooork."];
 
 @Component({
   selector: 'app-dashboard',
@@ -50,6 +51,10 @@ export class DashboardComponent implements OnInit {
 
     // Initiate timer to insert letters
     this.messageTimer = setInterval( () => this.typeLetter(), 400);
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.messageTimer)
   }
 
   typeLetter() {

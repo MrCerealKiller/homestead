@@ -1,20 +1,23 @@
-/*
- * Define Link Colours
- * Author: Jeremy Mallette
- * Last Updated: 10/12/2017
+/**
+ * Links
+ *
+ * Formats all links according to uniform style
+ *
+ * @author Jeremy Mallette
+ * @version 1.0.0
  */
 
 a:hover {
-    color: #F6CECE;
-    text-decoration: none;
+  color: #F6CECE;
+  text-decoration: none;
 }
 
 a:active {
-    color: #DC143C;
-    text-decoration: none;
+  color: #DC143C;
+  text-decoration: none;
 }
 
 a:visited {
-    color: #151515;
-    text-decoration: none;
+  color: #151515;
+  text-decoration: none;
 }

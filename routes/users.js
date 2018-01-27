@@ -1,12 +1,30 @@
-/*
- * H0M3ST3AD Project Protected Routes
- * Author: Jeremy Mallette
- * Date Last Updated: 11/01/2018
+/**
+ * @file User-specific, secured backend routes
+ * @author Jeremy Mallette
+ * @version 0.0.2
+ * @module Routes/User
+ * @see {@link module:Routes/Open} for unprotected routes
+ *
+ * @requires module:Express
+ * @requires module:Passport
+ * @requires module:JsonWebToken
+ * @requires module:Config/Database
+ * @requires module:Models/User
+ * @requires module:Models/Device
  */
 
 // Global Constants ------------------------------------------------------------
-const tokenExpiresInSecs = 259200 // 3 days
-const rememberMeTokenExpiresInSecs = 1814400 // 3 weeks
+/**
+ * @inner
+ * @description Options for when any authentification check fails
+ * @const
+ * @default
+ * @type {JSON}
+ */
+const SECURITY_OPTS = {
+  session: false,
+  failureRedirect: '/login'
+}
 
 // Imports ---------------------------------------------------------------------
 const express  = require('express');
@@ -19,108 +37,78 @@ const db_config = require('../config/database.js');
 const User      = require('../models/user.js');
 const Device    = require('../models/device.js');
 
-// Register (Post) -------------------------------------------------------------
-router.post('/register', function(req, res, next) {
-    var newUser = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        sms_number: req.body.sms_number
-    });
-
-    // Check is Username is already taken
-    User.getUserByUsername(newUser.username, function(err, user) {
-        if (err) {
-            throw err;
-        }
-
-        if (user) {
-            res.json({
-                success: false,
-                msg: 'This username has already been taken.'
-            });
-        } else {
-            // Check is email is already in use
-            User.getUserByEmail(newUser.email, function(err, user) {
-                if (err) {
-                    throw err;
-                }
-
-                if (user) {
-                    res.json({
-                        success: false,
-                        msg: 'This email address is already in use.'
-                    });
-                } else {
-                    // If all data is not in use, proceed to addUser
-                    User.addUser(newUser, function(err, user) {
-                        if (err) {
-                            res.json({
-                                success: false,
-                                msg: 'Could not register user. Error: ' + err
-                            });
-                        } else {
-                            res.json({
-                                success: true,
-                                msg: user.username + ' was registered.'
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    });
-});
-
-// Authenticate (Post) ---------------------------------------------------------
-router.post('/auth', function(req, res, next) {
-    var username = req.body.username;
-    var password = req.body.password;
-
-    User.getUserByUsername(username, function(err, user) {
-        if (err) {
-            throw err;
-        }
-
-        if (!user) {
-            return res.json({
-                success: false,
-                msg: username + ' not found.'
-            });
-        } else {
-            User.comparePassword(password, user.password, function(err, success) {
-                if (err) {
-                    throw err;
-                }
-
-                if (success) {
-                    const token = jwt.sign(user.toJSON(), db_config.key, {
-                        expiresIn: tokenExpiresInSecs
-                    });
-
-                    return res.json({
-                        success: true,
-                        token: 'Bearer ' + token,
-                        user: {
-                            id: user._id,
-                            username: user.username,
-                            email: user.email
-                        }
-                    });
-                } else {
-                    return res.json({
-                        success: false,
-                        msg: 'Incorrect Password'
-                    });
-                }
-            });
-        }
-    });
-});
-
 // Get Users Devices -----------------------------------------------------------
-router.post('/devices/list', function(req, res, next) {
-  var username = req.body.username;
+/**
+ * @inner
+ * @description Devices Routes (Supports GET, POST)
+ */
+router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
+  .get(function(req, res, next) {
+    getDevices(req,res);
+  })
+  .post(function(req, res, next) {
+    addDevice(req, res);
+  });
+
+// User Dashboard --------------------------------------------------------------
+router.route('/dashboard', passport.authenticate('jwt', SECURITY_OPTS))
+  .get(function(req, res, next) {});
+
+// User Profile ----------------------------------------------------------------
+router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
+  .get(function(req, res, next) {});
+
+// User Settings ---------------------------------------------------------------
+router.route('/settings', passport.authenticate('jwt', SECURITY_OPTS))
+  .get(function(req, res, next) {});
+
+/**
+ * @inner
+ * @description Exports all defined routes in this file
+ */
+module.exports = router;
+
+// Member Functions ------------------------------------------------------------
+
+/**
+ * @inner
+ * @description GET to /devices - Retrieves a user's devices
+ * @param {JSON} [req] Must contain the user's username
+ * @param {JSON} [res] Contains the result {success : boolean, msg: String}
+ */
+function addDevice(req, res) {
+  var newDevice = new Device({
+    customId: req.body.customId,
+    user: req.body.user,
+    deviceService: req.body.deviceService,
+    lastIpAddress: req.body.lastIpAddress,
+    lastStatusUpdate: req.body.lastStatusUpdate,
+    //dateLastUpdated: Date()
+  });
+
+  Device.addDevice(newDevice, function(err, device) {
+    if (err) {
+      res.json({
+        success: false,
+        msg: 'Could not save device. Error: ' + err
+      });
+    } else {
+      res.json({
+        success: true,
+        msg: device.customId + ' was saved.'
+      });
+    }
+  });
+}
+
+/**
+ * @inner
+ * @description POST to /devices - Adds a device to a user's devices
+ * @param {JSON} [req] Must contain the user's username
+ * @param {JSON} [res] Contains the result {success : boolean, msg: String}
+ */
+function getDevices(req, res) {
+  var username = req.headers.username;
 
   Device.getUserDevices(username, function(err, devices) {
     if (err) {
@@ -137,53 +125,4 @@ router.post('/devices/list', function(req, res, next) {
       });
     }
   });
-});
-
-// Add Device ------------------------------------------------------------------
-router.post('/devices/add', function(req, res, next) {
-  var newDevice = new Device({
-      customId: req.body.customId,
-      user: req.body.user,
-      deviceService: req.body.deviceService,
-      lastIpAddress: req.body.lastIpAddress,
-      lastStatusUpdate: req.body.lastStatusUpdate,
-      //dateLastUpdated: Date()
-  });
-
-  Device.addDevice(newDevice, function(err, device) {
-      if (err) {
-          res.json({
-              success: false,
-              msg: 'Could not save device. Error: ' + err
-          });
-      } else {
-          res.json({
-              success: true,
-              msg: device.customId + ' was saved.'
-          });
-      }
-  });
-});
-// User Dashboard (Get) --------------------------------------------------------
-router.get('/dashboard', function(req, res, next) {
-
-});
-
-// User Profile (Get) ----------------------------------------------------------
-router.get('/profile',
-            passport.authenticate('jwt',
-            {
-                session: false,
-                failureRedirect: '/settings'
-            }),
-            function(req, res, next) {
-    //res.json({user: req.user});
-    res.render('accounts', {title:'H0M3ST3AD - User'});
-});
-
-// User Settings (Get) ---------------------------------------------------------
-router.get('/settings', function(req, res, next) {
-
-});
-
-module.exports = router;
+}

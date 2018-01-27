@@ -1,3 +1,14 @@
+/**
+ * Generic Containers
+ *
+ * Generic containers with a focus on function and positioning rather than style
+ *
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+/* Generic Containers --------------------------------------------------------*/
+
 .container {
   margin: 16px auto;
   padding: 16px;
@@ -5,19 +16,37 @@
   align-content: center;
 }
 
+/* Misc. Containers ----------------------------------------------------------*/
+
 .homepage-button-group {
-    display: block;
-    margin: 0 auto;
-    padding: 32px;
-    width: 356px; /* TODO: Find a non-explicit was of handling this (SASS?) */
+  display: block;
+  margin: 0 auto;
+  padding: 32px;
+  width: 356px; /* TODO: Find a non-explicit was of handling this (SASS?) */
 }
 
 .backdrop-img {
-    display: block;
-    width: 100%;
-    min-width: 350px;
-    margin: 0 auto;
-    overflow: hidden;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
 
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Collapsable Container -----------------------------------------------------*/
+
+.collapse-header {}
+
+.collapse-panel {
+  padding: 16px;
+  max-height: 0;
+  overflow: hidden;
+
+  background-color: #F2F2F2;
+
+  transition: max-height 0.2s ease-out;
 }

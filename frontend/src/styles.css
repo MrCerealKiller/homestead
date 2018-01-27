@@ -1,7 +1,10 @@
-/*
- * H0M3ST3AD Project Main CSS Styles
- * Author: Jeremy Mallette
- * Date Last Updated: 10/12/2017
+/**
+ * Main Style sheet
+ *
+ * Very Generic Styles and all necessary imports
+ *
+ * @author Jeremy Mallette
+ * @version 1.0.0
  */
 
 
@@ -15,85 +18,88 @@
 @import "./assets/css/links.css";
 @import "./assets/css/generic-classes.css";
 @import "./assets/css/flash-messages.css";
+@import "./assets/css/tooltips.css";
 @import "./assets/css/simple-animations.css";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300|Share+Tech+Mono');
 
 /*  Generic Styles
 ------------------------------------------------------------------------------*/
 
 html {
-    min-width: 100%;
-    min-height: 100%;
+  min-width: 100%;
+  height: 100%;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin: 0;  /* Fixes bug... */
-    padding: 0; /* Somehow didn't inherit from all... */
+  margin: 0;  /* Fixes bug... */
+  padding: 0; /* Somehow didn't inherit from all... */
+  height: 100%;
 
-    background-color: #DCDCDC;
+  background-color: #DCDCDC;
 }
 
 p, q, a {
-    margin: 16px;
-    padding: 16px;
+  margin: 16px;
+  padding: 16px;
 
-    color: #151515;
-    font-family: helvetica;
-    font-size: 1em;
+  color: #151515;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
 }
 
 /*  Misc. Classes
 ------------------------------------------------------------------------------*/
 
 .content-body {
-    position: relative;
-    margin-top: 48px;     /* Prevent overflow into fixed navbar */
-    z-index: 0;
-    min-width: 400px;
+  position: relative;
+  margin-top: 48px;     /* Prevent overflow into fixed navbar */
+  z-index: 0;
+  min-width: 400px;
 }
 
 .title {
-    margin: 50px;
-    margin-top: 75px;
-    padding: 50px;
-    height: 50px;
+  margin: 50px;
+  margin-top: 75px;
+  padding: 50px;
+  height: 50px;
 
-    color: #DC143C;
-    font-family: "Courier New", Courier, monospace;
-    font-size: 4em;
-    /*font-style: italic; /* TODO : Maybe change? Design choice */
-    text-align: center;
+  color: #DC143C;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-size: 4em;
+  /*font-style: italic; /* TODO : Maybe change? Design choice */
+  text-align: center;
 }
 
 .error-title {
-    display: block;
-    padding: 50px;
+  display: block;
+  padding: 50px;
 
-    color: #DC143C;
-    font-family: "Courier New", Courier, monospace;
+  color: #DC143C;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
 }
 
 /* Misc. Object
 ------------------------------------------------------------------------------*/
 
 #particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -99;
-    width: 100%;
-    height: calc(100% - 500px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -99;
+  width: 100%;
+  height: calc(100% - 500px);
 }
 
 #homestead-explanation {
-    padding: 64px;
-    margin: 64px 0px 32px 0px;
+  padding: 64px;
+  margin: 64px 0px 0px 0px;
 
-    background-color: #F2F2F2;
-    box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);
-    text-align: center;
+  background-color: #F2F2F2;
+  box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);
+  text-align: center;
 }
