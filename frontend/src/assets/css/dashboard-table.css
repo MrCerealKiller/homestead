@@ -1,45 +1,49 @@
-/*
- * CSS For the Homepage Summary Table
- * Autor: Jeremy Mallette
- * Last Updated: 10/12/2017
+/**
+ * Dashboard Table
+ *
+ * Styles and CSS Functionality for the Dashboard device table
+ *
+ * @author Jeremy Mallette
+ * @version 1.0.0
  */
 
-.dashboard-table {
-    margin: 50px auto;
-    padding: 50px;
-    overflow: auto;
-    width: 90%;
 
-    outline: 4px solid #DC143C;
-    border-collapse: collapse;
-    border-spacing: 0px;
+.dashboard-table {
+  margin: 50px auto;
+  padding: 50px;
+  overflow: auto;
+  width: 90%;
+
+  outline: 4px solid #DC143C;
+  border-collapse: collapse;
+  border-spacing: 0px;
 }
 
 .dashboard-table .dashboard-table-header {
-    padding: 10px;
+  padding: 10px;
 
-    background-color: #DC143C;
-    color: #FFFFFF;
+  background-color: #DC143C;
+  color: #FFFFFF;
 
-    font-family: "Share Tech Mono", "Courier New", Courier, monospace;
-    font-size: 18px;
-    text-align: center;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-size: 18px;
+  text-align: center;
 }
 
 .dashboard-table .dashboard-table-cell {
-    padding: 10px;
+  padding: 10px;
 
-    font-family: "Montserrat", helvetica, sans-serif;
-    font-size: 14px;
-    text-align: center;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 14px;
+  text-align: center;
 }
 
 /* Alternate Row Colours */
 .dashboard-table .dashboard-table-row:nth-child(even) {
-    background-color: #F2F2F2;
+  background-color: #F2F2F2;
 }
 
 /* Highlight Hover Row */
 .dashboard-table .dashboard-table-row:hover {
-    background-color: #F6CECE;
+  background-color: #F6CECE;
 }

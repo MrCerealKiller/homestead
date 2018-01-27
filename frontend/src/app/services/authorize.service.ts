@@ -13,7 +13,7 @@ export class AuthorizeService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.m_http.post('http://localhost:3000/users/register',
+    return this.m_http.post('http://localhost:3000/register',
       user, {headers: headers}).map(res => res.json());
   }
 
@@ -21,7 +21,7 @@ export class AuthorizeService {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.m_http.post('http://localhost:3000/users/auth',
+    return this.m_http.post('http://localhost:3000/auth',
       user, {headers: headers}).map(res => res.json());
   }
 
