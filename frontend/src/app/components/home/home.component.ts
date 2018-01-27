@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private m_router: Router) { }
 
   ngOnInit() {
+    var token = localStorage.getItem('id_token');
+    var user = localStorage.getItem('user');
+
+    if ((token != null && token != undefined && token != "") &&
+        (user  != null && user  != undefined && user  != "")) {
+      this.m_router.navigate(['/dashboard']);
+    }
   }
 
 }

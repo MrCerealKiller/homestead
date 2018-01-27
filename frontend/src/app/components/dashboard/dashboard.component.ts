@@ -53,6 +53,10 @@ export class DashboardComponent implements OnInit {
     this.messageTimer = setInterval( () => this.typeLetter(), 400);
   }
 
+  ngOnDestroy() {
+    clearInterval(this.messageTimer)
+  }
+
   typeLetter() {
     // Insert a letter at each interval
     document.getElementById("welcome-home").innerHTML = this.message.substring(0, this.msgCount);
