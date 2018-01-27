@@ -10,7 +10,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
     color: #FFFFFF;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1em;
     text-decoration: none;
     cursor: pointer;
@@ -32,7 +32,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
     color: #151515;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1em;
     text-decoration: none;
     cursor: pointer;

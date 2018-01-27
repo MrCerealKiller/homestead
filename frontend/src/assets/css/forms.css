@@ -23,7 +23,7 @@
     padding: 16px;
 
     color: #151515;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1.2em;
 }
 
@@ -31,7 +31,7 @@
     width: 250px;
 
     color: #151515;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1.2em;
 }
 
@@ -40,6 +40,6 @@
   padding: 0px;
 
   color: #151515;
-  font-family: helvetica;
+  font-family: "Montserrat", helvetica, sans-serif;
   font-size: 0.75em;
 }

@@ -73,7 +73,7 @@
     padding-left: 8px;
 
     color: #FFFFFF;
-    font-family: courier;
+    font-family: "Courier New", Courier, monospace;
     font-size: 24px;
     font-style: normal;
     text-align: left;
@@ -92,7 +92,7 @@
     display: none;            /* Is Hidden by default */
     position: absolute;
     right: 0;
-    min-width: 160px;
+    min-width: 200px;
     margin-top: 10px;
 
     background-color: #F2F2F2;
@@ -108,7 +108,7 @@
 
     background-color: #F2F2F2;
     color: #151515;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1em;
     text-decoration: none;
     cursor: pointer;

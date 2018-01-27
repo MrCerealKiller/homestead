@@ -16,6 +16,7 @@
 @import "./assets/css/generic-classes.css";
 @import "./assets/css/flash-messages.css";
 @import "./assets/css/simple-animations.css";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300|Share+Tech+Mono');
 
 /*  Generic Styles
 ------------------------------------------------------------------------------*/
@@ -42,7 +43,7 @@ p, q, a {
     padding: 16px;
 
     color: #151515;
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 1em;
 }
 
@@ -63,7 +64,7 @@ p, q, a {
     height: 50px;
 
     color: #DC143C;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Share Tech Mono", "Courier New", Courier, monospace;
     font-size: 4em;
     /*font-style: italic; /* TODO : Maybe change? Design choice */
     text-align: center;
@@ -74,7 +75,7 @@ p, q, a {
     padding: 50px;
 
     color: #DC143C;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Share Tech Mono", "Courier New", Courier, monospace;
 }
 
 /* Misc. Object
@@ -91,7 +92,7 @@ p, q, a {
 
 #homestead-explanation {
     padding: 64px;
-    margin: 64px 0px 32px 0px;
+    margin: 64px 0px 0px 0px;
 
     background-color: #F2F2F2;
     box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);

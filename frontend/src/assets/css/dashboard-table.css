@@ -7,7 +7,7 @@
 .dashboard-table {
     margin: 50px auto;
     padding: 50px;
-
+    overflow: auto;
     width: 90%;
 
     outline: 4px solid #DC143C;
@@ -21,7 +21,7 @@
     background-color: #DC143C;
     color: #FFFFFF;
 
-    font-family: courier;
+    font-family: "Share Tech Mono", "Courier New", Courier, monospace;
     font-size: 18px;
     text-align: center;
 }
@@ -29,7 +29,7 @@
 .dashboard-table .dashboard-table-cell {
     padding: 10px;
 
-    font-family: helvetica;
+    font-family: "Montserrat", helvetica, sans-serif;
     font-size: 14px;
     text-align: center;
 }
