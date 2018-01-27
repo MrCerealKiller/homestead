@@ -1,7 +1,12 @@
-/*
- * H0M3ST3AD AuthO Strategy
- * Author: Jeremy Mallette
- * Date Last Updated: 27/12/2017
+/**
+ * @file Authentification Strategy using Passport with a JWT implementation
+ * @author Jeremy Mallette
+ * @version 0.0.1
+ * @module Config/Passport
+ *
+ * @requires module:Passport-JWT
+ * @requires module:Models/User
+ * @requires module:Config/Database
  */
 
 // Imports ---------------------------------------------------------------------
@@ -13,6 +18,11 @@ const User      = require('../models/user.js');
 const db_config = require('../config/database.js');
 
 // Retrieve Token --------------------------------------------------------------
+/**
+ * @name Strategy
+ * @memberof module:Config/Passport
+ * @description Exports the JWT Strategy implementation for Passport
+ */
 module.exports = function(passport) {
     var opts = {};
 

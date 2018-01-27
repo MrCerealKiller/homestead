@@ -3,7 +3,14 @@
  * @author Jeremy Mallette
  * @version 0.0.2
  * @module Routes/User
- * @see {@link module:Routes/Open} for unprotected routes.
+ * @see {@link module:Routes/Open} for unprotected routes
+ *
+ * @requires module:Express
+ * @requires module:Passport
+ * @requires module:JsonWebToken
+ * @requires module:Config/Database
+ * @requires module:Models/User
+ * @requires module:Models/Device
  */
 
 // Global Constants ------------------------------------------------------------
@@ -14,7 +21,7 @@
  * @default
  * @type {JSON}
  */
-const secOpts = {
+const SECURITY_OPTS = {
   session: false,
   failureRedirect: '/login'
 }
@@ -35,7 +42,7 @@ const Device    = require('../models/device.js');
  * @inner
  * @description Devices Routes (Supports GET, POST)
  */
-router.route('/devices', passport.authenticate('jwt', secOpts))
+router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {
     getDevices(req,res);
   })
@@ -44,15 +51,15 @@ router.route('/devices', passport.authenticate('jwt', secOpts))
   });
 
 // User Dashboard --------------------------------------------------------------
-router.route('/dashboard', passport.authenticate('jwt', secOpts))
+router.route('/dashboard', passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {});
 
 // User Profile ----------------------------------------------------------------
-router.route('/profile', passport.authenticate('jwt', secOpts))
+router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {});
 
 // User Settings ---------------------------------------------------------------
-router.route('/settings', passport.authenticate('jwt', secOpts))
+router.route('/settings', passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {});
 
 /**

@@ -3,7 +3,14 @@
  * @author Jeremy Mallette
  * @version 0.0.2
  * @module Routes/Open
- * @see {@link module:Routes/User} for protected routes.
+ * @see {@link module:Routes/User} for protected routes
+ *
+ * @requires module:Express
+ * @requires module:Passport
+ * @requires module:JsonWebToken
+ * @requires module:Config/Database
+ * @requires module:Models/User
+ * @requires module:Models/Device
  */
 
 // Global Constants ------------------------------------------------------------
@@ -13,9 +20,8 @@
  * @const
  * @default
  * @type {number}
-
  */
-const tokenExpiresInSecs = 259200 // 3 days
+const TOKEN_EXPIRY_SEC = 259200 // 3 days
 /**
  * @inner
  * @description "Remember Me" expiry stamp on JSON Web Token in ms
@@ -23,7 +29,7 @@ const tokenExpiresInSecs = 259200 // 3 days
  * @default
  * @type {number}
  */
-const rememberMeTokenExpiresInSecs = 1814400 // 3 weeks
+const REMEMBER_ME_TOKEN_EXPIRY_SEC = 1814400 // 3 weeks
 
 // Imports ---------------------------------------------------------------------
 const express  = require('express');
@@ -151,7 +157,7 @@ function authenticateUser(req, res) {
 
         if (success) {
           const token = jwt.sign(user.toJSON(), db_config.key, {
-            expiresIn: tokenExpiresInSecs
+            expiresIn: TOKEN_EXPIRY_SEC
           });
 
           return res.json({

@@ -6,7 +6,7 @@
   "main": "homestead.js",
   "scripts": {
     "start": "nodejs server.js",
-    "generate-docs": "node_modules/.bin/jsdoc --configure ./config/jsdoc.json --verbose"
+    "generate-docs": "node_modules/.bin/jsdoc --configure ./config/meta/jsdoc.json --verbose"
   },
   "author": "Jeremy Mallette",
   "license": "ISC",
