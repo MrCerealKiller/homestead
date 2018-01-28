@@ -144,6 +144,7 @@ module.exports.updateUserById = function(user, callback) {
       throw err;
     }
 
+    dbUser.email = user.email;
     dbUser.sms_number = user.sms_number;
     dbUser.save(callback);
   });
