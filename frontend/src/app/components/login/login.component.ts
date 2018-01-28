@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
               private m_router: Router) { }
 
   ngOnInit() {
+    document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
+  }
+
+  ngOnDestroy() {
+    document.getElementsByClassName('navbar-list-right')[0].classList.remove('hide');
   }
 
   onLoginSubmit() {

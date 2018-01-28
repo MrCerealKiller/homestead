@@ -10,7 +10,11 @@
 
 /* This class is toggled to display dropdown items */
 .show {
-  display:block;
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 
 /* This class disables the user highlight/select of an element */
