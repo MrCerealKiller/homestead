@@ -1,3 +1,18 @@
-<p>
-  device-settings works!
-</p>
+<div>
+  <h1 class="title">Device Settings</h1>
+</div>
+
+<div class="text-container">
+  <button class="collapse-header" (click)="expand(0)">Add a Device</button>
+  <div class="collapse-panel">
+    <p>Add Device Here...</p>
+  </div>
+  <button class="collapse-header" (click)="expand(1)">Manual Update a Device</button>
+  <div class="collapse-panel">
+    <p>Update Device Here</p>
+  </div>
+  <button class="collapse-header" (click)="expand(2)">Delete a Device</button>
+  <div class="collapse-panel">
+    <p>Delete Device Here</p>
+  </div>
+</div>

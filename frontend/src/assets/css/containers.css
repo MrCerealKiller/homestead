@@ -77,17 +77,3 @@
   text-align: center;
   align-content: center;
 }
-
-/* Collapsable Container -----------------------------------------------------*/
-
-.collapse-header {}
-
-.collapse-panel {
-  padding: 16px;
-  max-height: 0;
-  overflow: hidden;
-
-  background-color: #F2F2F2;
-
-  transition: max-height 0.2s ease-out;
-}
