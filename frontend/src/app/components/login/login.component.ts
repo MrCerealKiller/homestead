@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       remember: this.remember
     }
 
-    if (user.username) {
+    if (user.username && user.password) {
       this.m_authService.authenticateUser(user).subscribe(data => {
         if (data.success) {
           this.m_authService.storeUserData(data.token, data.user);

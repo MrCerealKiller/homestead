@@ -10,7 +10,13 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
+    var token = localStorage.getItem('id_token');
+    var user = localStorage.getItem('user');
+
+    if ((token == null || token == undefined || token == "") &&
+        (user  == null || user  == undefined || user  == "")) {
+      document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
+    }
   }
 
   ngOnDestroy() {
