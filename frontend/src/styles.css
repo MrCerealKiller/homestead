@@ -17,6 +17,7 @@
 @import "./assets/css/buttons.css";
 @import "./assets/css/links.css";
 @import "./assets/css/generic-classes.css";
+@import "./assets/css/modals.css";
 @import "./assets/css/flash-messages.css";
 @import "./assets/css/tooltips.css";
 @import "./assets/css/simple-animations.css";
@@ -56,6 +57,11 @@ p, q, a {
   font-size: 1em;
 }
 
+p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 /*  Misc. Classes
 ------------------------------------------------------------------------------*/
 
@@ -67,10 +73,9 @@ p, q, a {
 }
 
 .title {
-  margin: 50px;
-  margin-top: 75px;
-  padding: 50px;
-  height: 50px;
+  margin: 48px;
+  margin-top: 72px;
+  padding: 48px;
 
   color: #DC143C;
   font-family: "Share Tech Mono", "Courier New", Courier, monospace;

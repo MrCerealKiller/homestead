@@ -44,6 +44,10 @@
   background-color: #D9EDF7;
 }
 
+.alert-normal {
+  background-color: #F2F2F2;
+}
+
 
 .alert-success {
   background-color: #DFF0D8;
