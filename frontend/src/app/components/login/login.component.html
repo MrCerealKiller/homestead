@@ -3,15 +3,21 @@
 </div>
 
 <form class="login-form" (submit)="onLoginSubmit()">
-  <div class="container">
+  <div class="form-element">
     <label class="form-label">Username:</label>
     <input class="form-textbox" type="text" [(ngModel)]="username" name="username">
   </div>
-  <div class="container">
+  <div class="form-element">
     <label class="form-label">Password:</label>
     <input class="form-textbox" type="password" [(ngModel)]="password" name="password">
   </div>
-  <div class="container">
-    <input class="button-dark selectDisable" type="submit"/>
+  <div class="form-element">
+    <input class="button-dark selectDisable" id="form-button-stretch" type="submit"/>
+  </div>
+  <div class="form-element">
+    <label class="form-label small-font">
+        <input type="checkbox" [(ngModel)]="remember" name="remember">Remember me
+    </label>
+    <!--label class="form-label small-font right">Forgot Password</label-->
   </div>
 </form>

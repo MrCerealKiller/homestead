@@ -13,6 +13,7 @@
 - Extra Auth:
   * When a person performs an action that affects the database, ensure the user
   if only targeting items they "own".
+  * Add possibility to change password (send to email?)
 
 ### Minor:
 - Add polyfill for Microsoft Edge js "Element.match()" function (used in navbar)

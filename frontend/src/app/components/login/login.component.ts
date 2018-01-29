@@ -12,6 +12,7 @@ import { AuthorizeService } from '../../services/authorize.service';
 export class LoginComponent implements OnInit {
   username: String;
   password: String;
+  remember: boolean;
 
   constructor(private m_authService: AuthorizeService,
               private m_fmService: FlashMessagesService,
@@ -28,7 +29,8 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     var user = {
       username: this.username,
-      password: this.password
+      password: this.password,
+      remember: this.remember
     }
 
     if (user.username) {
