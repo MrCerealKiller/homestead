@@ -8,13 +8,26 @@
  * @version 1.0.0
  */
 
-/* This class is toggled to display dropdown items */
 .show {
   display: block;
 }
 
 .hide {
   display: none;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 /* This class disables the user highlight/select of an element */

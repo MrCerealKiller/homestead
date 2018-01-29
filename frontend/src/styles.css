@@ -38,9 +38,13 @@ html {
 body {
   margin: 0;  /* Fixes bug... */
   padding: 0; /* Somehow didn't inherit from all... */
-  height: 100%;
 
   background-color: #DCDCDC;
+}
+
+h2, h3, h4 {
+  color: #DC143C;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
 }
 
 p, q, a {
