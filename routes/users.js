@@ -243,11 +243,12 @@ function getFullProfile(req, res) {
  * @param {JSON} [res] Contains the result {success : boolean, msg: String}
  */
 function updateProfile(req, res) {
-  var update = new Device({
+  var update = {
     _id: req.body._id,
     email: req.body.email,
+    isEmailUpdate: req.body.isEmailUpdate,
     sms_number: req.body.sms_number
-  });
+  };
 
   // Check is email is already in use
   User.getUserByEmail(update.email, function(err, user) {
@@ -255,13 +256,13 @@ function updateProfile(req, res) {
       throw err;
     }
 
-    if (user) {
+    if (user && (update.isEmailUpdate == true)) {
       res.json({
         success: false,
         msg: 'This email address is already in use.'
       });
     } else {
-      User.updateDeviceById(update, function(err, user) {
+      User.updateUserById(update, function(err, user) {
         if (err || user == null) {
           res.json({
             success: false,

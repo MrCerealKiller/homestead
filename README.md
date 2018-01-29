@@ -21,11 +21,6 @@
 ### Pages to Implement:
 - Profile
   * Account Cards - Minimalistic
-- Account Settings (Bare Bones)
-  * Update Profile
-  * Delete Account
-  * Network Settings (?)
-  * Accordian(?)
 - Device Setting (Bare Bones) (Maybe not even needed yet..?)
   * Table of Devices (IP Address, Name, Edit Button, Delete Button)
   * Add a Device
