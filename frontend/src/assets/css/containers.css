@@ -16,6 +16,15 @@
   align-content: center;
 }
 
+.text-container {
+  width: 80%;
+  margin: 16px auto;
+  padding: 16px;
+
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
 /* Misc. Containers ----------------------------------------------------------*/
 
 .homepage-button-group {
@@ -37,16 +46,44 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-/* Collapsable Container -----------------------------------------------------*/
-
-.collapse-header {}
-
-.collapse-panel {
+.about-vertical-container {
+  display: inline-block;
+  margin: 0px auto;
   padding: 16px;
-  max-height: 0;
-  overflow: hidden;
+  width: 40%;
 
-  background-color: #F2F2F2;
+  text-align: center;
+  align-content: center;
+}
 
-  transition: max-height 0.2s ease-out;
+.about-vertical-container img {
+  display: block;
+  margin: 0px auto;
+  padding: 16px;
+  width: 75%;
+  max-width: 312px; !important
+
+  text-align: center;
+  align-content: center;
+}
+
+.text-container#about-page {
+  margin: 80px auto;
+}
+
+.text-container#about-page h2, h3, h4 {
+  margin-top: 16px;
+
+  text-align: center;
+  align-content: center;
+}
+
+.text-container#profile-page {
+  margin: 80px auto;
+  max-width: 624px;
+}
+
+.text-container#profile-page p {
+  margin: 0px auto;
+  padding: 0px;
 }

@@ -25,6 +25,32 @@ export class AuthorizeService {
       user, {headers: headers}).map(res => res.json());
   }
 
+  getUser(user) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('username', JSON.parse(user).username);
+
+    return this.m_http.get('http://localhost:3000/users/profile',
+    {headers: headers}).map(res => res.json());
+  }
+
+  updateUser(update) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.m_http.put('http://localhost:3000/users/profile',
+      update, {headers: headers}).map(res => res.json());
+  }
+
+  deleteUser(_id) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('id', _id);
+
+    return this.m_http.delete('http://localhost:3000/users/profile',
+      {headers: headers}).map(res => res.json());
+  }
+
   storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));

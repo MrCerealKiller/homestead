@@ -1,0 +1,40 @@
+/**
+ * Generic Containers
+ *
+ * Generic containers with a focus on function and positioning rather than style
+ *
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.collapse-header {
+  padding: 16px;
+  width: 100%;
+
+  background-color: #F2F2F2;
+  color: #151515;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1.2em;
+  text-decoration: none;
+
+  transition: 0.2s;
+ }
+
+ .active-header, .collapse-header:hover {
+   background-color: #DC143C;
+   color: #FFFFFF;
+  }
+
+.collapse-panel {
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+
+  background-color: #F2F2F2;
+
+  transition: max-height 0.2s ease-out;
+}

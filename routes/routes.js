@@ -21,7 +21,7 @@
  * @default
  * @type {number}
  */
-const TOKEN_EXPIRY_SEC = 259200 // 3 days
+const TOKEN_EXPIRY_SEC = 86400 // 3 days
 /**
  * @inner
  * @description "Remember Me" expiry stamp on JSON Web Token in ms
@@ -138,6 +138,8 @@ function registerUser(req, res) {
 function authenticateUser(req, res) {
   var username = req.body.username;
   var password = req.body.password;
+  var remember = req.body.remember;
+  var token;
 
   User.getUserByUsername(username, function(err, user) {
     if (err) {
@@ -156,9 +158,15 @@ function authenticateUser(req, res) {
         }
 
         if (success) {
-          const token = jwt.sign(user.toJSON(), db_config.key, {
-            expiresIn: TOKEN_EXPIRY_SEC
-          });
+          if (remember == true) {
+            token = jwt.sign(user.toJSON(), db_config.key, {
+              expiresIn: REMEMBER_ME_TOKEN_EXPIRY_SEC
+            });
+          } else {
+            token = jwt.sign(user.toJSON(), db_config.key, {
+              expiresIn: TOKEN_EXPIRY_SEC
+            });
+          }
 
           return res.json({
             success: true,

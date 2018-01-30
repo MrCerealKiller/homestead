@@ -77,6 +77,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
-    })
+    });
   }
 }

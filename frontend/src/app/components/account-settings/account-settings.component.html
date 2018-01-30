@@ -1,3 +1,43 @@
-<p>
-  account-settings works!
-</p>
+<div>
+  <h1 class="title">Account Settings</h1>
+</div>
+
+<div class="text-container">
+  <button class="collapse-header" (click)="expand(0)">Update Profile</button>
+  <div class="collapse-panel">
+    <form class="settings-form" (submit)="onUpdateSubmit()">
+      <div class="form-element">
+        <label class="form-label">Preferred Email: </label>
+        <input class="form-textbox" type="text" [(ngModel)]="email" name="email">
+      </div>
+      <div class="form-element">
+        <label class="form-label">Phone Number (Optional): </label>
+        <input class="form-textbox" type="text" [(ngModel)]="sms_number" name="sms_number">
+        <p class="form-explanation">This will be used to send you custom alerts, if desired.</p>
+      </div>
+      <div class="form-element">
+        <input class="button-dark selectDisable" id="form-button-stretch" type="submit">
+      </div>
+    </form>
+    <br><hr>
+  </div>
+  <button class="collapse-header" (click)="expand(1)">Delete Profile</button>
+  <div class="collapse-panel">
+    <form class="settings-form" (submit)="onDeleteSubmit()">
+      <div class="form-element">
+        <button type="submit" class="button-dark selectDisable" id="form-button-stretch">Delete Profile</button>
+        <br><br><p class="form-explanation"><strong>WARNING:</strong> This action cannot be undone and permanently deletes all user data.</p>
+      </div>
+    </form>
+    <br><hr>
+  </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div id="deleteModal" class="modal">
+  <div class="modal-content container">
+    <h2>Warning!<br><br>Are you sure you want to do delete your account?<br><br></h2>
+    <button class="button-dark selectDisable" (click)="onCancelDeleteSubmit()">Cancel</button>
+    <button class="button-dark selectDisable" (click)="onConfirmDeleteSubmit()">Confirm</button>
+  </div>
+</div>

@@ -18,6 +18,12 @@ export class HomeComponent implements OnInit {
         (user  != null && user  != undefined && user  != "")) {
       this.m_router.navigate(['/dashboard']);
     }
+
+    document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
+  }
+
+  ngOnDestroy() {
+    document.getElementsByClassName('navbar-list-right')[0].classList.remove('hide');
   }
 
 }
