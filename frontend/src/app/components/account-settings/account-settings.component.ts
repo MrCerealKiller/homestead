@@ -11,6 +11,9 @@ import { AuthorizeService } from '../../services/authorize.service';
   styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent implements OnInit {
+  headers: any;
+  panels: any;
+
   _id: String;
   username: String;
   email: String;
@@ -29,6 +32,26 @@ export class AccountSettingsComponent implements OnInit {
       this.emailOrig = data.profile.email;
       this.sms_number = data.profile.sms_number;
     });
+  }
+
+  ngAfterViewInit() {
+    this.headers = document.getElementsByClassName('collapse-header')
+    this.panels = document.getElementsByClassName('collapse-panel');
+  }
+
+  expand(target) {
+    for(var i = 0; i < 2; i++) {
+      var header = this.headers[i];
+      var panel = this.panels[i];
+
+      if(i == target && !header.classList.contains('active-header')) {
+        header.classList.add('active-header');
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      } else {
+        header.classList.remove('active-header');
+        panel.style.maxHeight = "0";
+      }
+    }
   }
 
   onUpdateSubmit() {
@@ -64,7 +87,6 @@ export class AccountSettingsComponent implements OnInit {
   onDeleteSubmit() {
     // Show Modal Window
     document.getElementById('deleteModal').style.display = "block";
-    console.log(document.getElementById('deleteModal').classList);
   }
 
   onCancelDeleteSubmit() {

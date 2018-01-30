@@ -8,8 +8,8 @@
  */
 
 .login-form {
-  margin: 64px auto;
   padding: 64px;
+  margin: 64px auto;
   min-width: 300px;
   width: 20%;
 
@@ -25,6 +25,14 @@
 
   background-color: #F2F2F2;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.settings-form {
+  margin: 0px auto;
+  padding: 16px;
+  width: 80%;
+
+  background-color: #F2F2F2;
 }
 
 .form-element {
@@ -60,4 +68,34 @@
   color: #151515;
   font-family: "Montserrat", helvetica, sans-serif;
   font-size: 0.75em;
+}
+
+.select-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: #F2F2F2;
+}
+
+.select-wrapper select {
+  width: 100%;
+  margin: 8px auto;
+  padding: 4px;
+  box-sizing: border-box;
+
+  background-color: #F2F2F2;
+  border: none;
+  border-bottom: 1px solid #151515;
+  color: #151515;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.select-wrapper option:checked, .select-wrapper option:hover {
+    box-shadow: 0 0 10px 100px #F6CECE inset;
+}
+
+.select-wrapper select:focus > .select-wrapper option:checked {
+    background: #F6CECE !important;
 }

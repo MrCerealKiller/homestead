@@ -17,10 +17,9 @@
 
 ### Minor:
 - Add polyfill for Microsoft Edge js "Element.match()" function (used in navbar)
+- Bug with content body...
 
 ### Pages to Implement:
-- Profile
-  * Account Cards - Minimalistic
 - Device Setting (Bare Bones) (Maybe not even needed yet..?)
   * Table of Devices (IP Address, Name, Edit Button, Delete Button)
   * Add a Device
