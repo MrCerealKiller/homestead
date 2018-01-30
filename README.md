@@ -20,10 +20,6 @@
 - Bug with content body...
 
 ### Pages to Implement:
-- Device Setting (Bare Bones) (Maybe not even needed yet..?)
-  * Table of Devices (IP Address, Name, Edit Button, Delete Button)
-  * Add a Device
-  * Network Settings (?)
 - Device Page:
   * Detailed Breakdown
   * Serial Emulator

@@ -116,4 +116,47 @@ export class ValidateService {
 
     return {isErr: false, msg: "Success"};
   }
+
+  validateDevice(device) {
+    var err = "";
+
+    // Custom Id Field
+    if (device.customId == undefined ||
+        device.customId == null      ||
+        device.customId == "") {
+      err += "You must input a Custom ID.";
+    }
+
+    if (err.length) {
+      return {isErr: true, msg: err};
+    }
+
+    // Device Service Field
+    if (device.deviceService == undefined ||
+        device.deviceService == null      ||
+        device.deviceService == "") {
+      err += "You must input a Service description.";
+    }
+
+    if (err.length) {
+      return {isErr: true, msg: err};
+    }
+
+    // IP Address Field
+    // IP Address Regaular Expression Template
+    const reIp = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
+    if (device.lastIpAddress == undefined ||
+        device.lastIpAddress == null      ||
+        device.lastIpAddress == "") {
+      err += "You must input an IP Address";
+    } else if (!reIp.test(device.lastIpAddress)) {
+      err += "The given IP Address is not valid.";
+    }
+
+    if (err.length) {
+      return {isErr: true, msg: err};
+    }
+
+    return {isErr: false, msg: "Success"};
+  }
 }

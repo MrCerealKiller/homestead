@@ -33,7 +33,7 @@
       <div class="form-element">
         <label class="form-label">Device to Update:</label>
         <div class="select-wrapper">
-          <select class="selectDisable" [(ngModel)]="selectedUpdateDevice" name="selectedUpdateDevice">
+          <select class="selectDisable" (change)="prefillUpdateForm()" [(ngModel)]="selectedUpdateDevice" name="selectedUpdateDevice">
             <option *ngFor="let x of devices" [ngValue]="x">{{x.customId}}</option>
           </select>
         </div>
