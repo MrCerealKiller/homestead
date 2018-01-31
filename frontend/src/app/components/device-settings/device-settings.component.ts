@@ -55,7 +55,7 @@ export class DeviceSettingsComponent implements OnInit {
 
   updateLists() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.m_devicePipeService.getUserDevices(this.user).subscribe(data => {
+    this.m_devicePipeService.getUserDevices(this.user, null).subscribe(data => {
       if (data.success) {
         this.devices = data.devices;
       } else {

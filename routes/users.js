@@ -97,27 +97,47 @@ module.exports = router;
 /**
  * @inner
  * @description GET to /devices - Retrieves all a user's devices in detail
- * @param {JSON} [req] Must contain the user's username
+ * @param {JSON} [req] Must contain the user's username or contain the
+ * device ID to retrieve a single device
  * @param {JSON} [res] Contains the result {success : boolean, msg: String}
  */
 function getDevices(req, res) {
   var username = req.headers.username;
+  var id = req.headers.id;
 
-  Device.getUserDevices(username, function(err, devices) {
-    if (err || devices == null) {
-      res.json({
-        success: false,
-        msg: ('Could not retrieve devices. Error: ' + err),
-        devices: undefined
-      });
-    } else {
-      res.json({
-        success: true,
-        msg: 'Retrieved user\s devices',
-        devices: devices
-      });
-    }
-  });
+  if (id != null && id != undefined && id != "") {
+    Device.getDeviceById(id, function(err, device) {
+      if (err || device == null) {
+        res.json({
+          success: false,
+          msg: ('Could not retrieve devices. Error: ' + err),
+          device: undefined
+        });
+      } else {
+        res.json({
+          success: true,
+          msg: 'Retrieved user\s devices',
+          device: device
+        });
+      }
+    });
+  } else {
+    Device.getUserDevices(username, function(err, devices) {
+      if (err || devices == null) {
+        res.json({
+          success: false,
+          msg: ('Could not retrieve devices. Error: ' + err),
+          devices: undefined
+        });
+      } else {
+        res.json({
+          success: true,
+          msg: 'Retrieved user\s devices',
+          devices: devices
+        });
+      }
+    });
+  }
 }
 
 /**

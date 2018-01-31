@@ -68,7 +68,7 @@ export class DashboardComponent implements OnInit {
 
   updateDevices() {
     var user : User = JSON.parse(localStorage.getItem('user'));
-    this.m_devicePipeService.getUserDevices(user).subscribe(data => {
+    this.m_devicePipeService.getUserDevices(user, null).subscribe(data => {
       if (data.success) {
         this.devices = data.devices;
       } else {
