@@ -24,14 +24,14 @@
   float: right;
 }
 
-.small-font {
-  font-size: 0.8em;
-}
-
 .clearfix::after {
     content: "";
     clear: both;
-    display: table;
+    display: block;
+}
+
+.small-font {
+  font-size: 0.8em;
 }
 
 /* This class disables the user highlight/select of an element */
