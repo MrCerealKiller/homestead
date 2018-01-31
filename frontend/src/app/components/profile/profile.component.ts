@@ -11,16 +11,17 @@ import { AuthorizeService } from '../../services/authorize.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
   user: User;
 
-  constructor(private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_router: Router) { }
+  constructor(private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.m_authService.getUser(this.user).subscribe(data => {
+    this.authService.getUser(this.user).subscribe(data => {
       this.user = data.profile;
 
       if (this.user.sms_number == null || this.user.sms_number == undefined) {

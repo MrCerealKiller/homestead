@@ -19,11 +19,6 @@
 - Add polyfill for Microsoft Edge js "Element.match()" function (used in navbar)
 - Bug with content body...
 
-### Pages to Implement:
-- Device Page:
-  * Detailed Breakdown
-  * Serial Emulator
-
 ### Improve Responsiveness:
 - NavbarComponent
   * Fix horizontal scroll when navbar is below minimum width

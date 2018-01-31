@@ -13,6 +13,7 @@ import { AuthorizeService } from '../../services/authorize.service';
   templateUrl: './account-settings.component.html',
   styleUrls: ['./account-settings.component.css']
 })
+
 export class AccountSettingsComponent implements OnInit {
   headers: any;
   panels: any;
@@ -23,14 +24,14 @@ export class AccountSettingsComponent implements OnInit {
   updateSmsNumber: String;
   emailOrig: String;
 
-  constructor(private m_validateService: ValidateService,
-              private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_router: Router) { }
+  constructor(private validateService: ValidateService,
+              private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.m_authService.getUser(this.user).subscribe(data => {
+    this.authService.getUser(this.user).subscribe(data => {
       this.user = data.profile;
       this.emailOrig = data.profile.email;
 
@@ -77,20 +78,20 @@ export class AccountSettingsComponent implements OnInit {
       update.isEmailUpdate = true;
     }
 
-    var validateResult = this.m_validateService.validateUserUpdate(update);
+    var validateResult = this.validateService.validateUserUpdate(update);
 
     if (validateResult.isErr) {
       //console.log(validateResult.msg);
-      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
+      this.fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
       return false;
     }
 
     // Save Update to Backend
-    this.m_authService.updateUser(update).subscribe(data => {
+    this.authService.updateUser(update).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your account has been updated.", {cssClass: 'alert-success', timeout: 5000});
+        this.fmService.show("Your account has been updated.", {cssClass: 'alert-success', timeout: 5000});
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }
@@ -106,13 +107,13 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   onConfirmDeleteSubmit() {
-    this.m_authService.deleteUser(this.user._id).subscribe(data => {
+    this.authService.deleteUser(this.user._id).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your account has been deleted.", {cssClass: 'alert-normal', timeout: 5000});
-        this.m_authService.logout();
-        this.m_router.navigate(['/']);
+        this.fmService.show("Your account has been deleted.", {cssClass: 'alert-normal', timeout: 5000});
+        this.authService.logout();
+        this.router.navigate(['/']);
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }

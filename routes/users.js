@@ -23,7 +23,6 @@
  */
 const SECURITY_OPTS = {
   session: false,
-  failureRedirect: '/login'
 }
 
 // Imports ---------------------------------------------------------------------
@@ -47,7 +46,8 @@ const Device    = require('../models/device.js');
  * @name /devices
  * @description Devices Routes (Supports GET, POST, PUT, DELETE)
  */
-router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/devices')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {
     getDevices(req,res);
   })
@@ -67,7 +67,8 @@ router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
  * @name /profile
  * @description Devices Routes (Supports GET, PUT, DELETE)
  */
-router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/profile')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {
     getFullProfile(req, res);
   })
@@ -79,7 +80,8 @@ router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
   });
 
 // User Settings ---------------------------------------------------------------
-router.route('/settings', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/settings')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {});
 
 /**

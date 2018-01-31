@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../../interfaces/user';
 import { Device } from '../../interfaces/device';
@@ -23,7 +23,8 @@ export class DevicePageComponent implements OnInit {
 
   constructor(private fmService: FlashMessagesService,
               private devicePipeService: DevicePipeService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     var id = this.route.snapshot.paramMap.get('id');
@@ -33,7 +34,8 @@ export class DevicePageComponent implements OnInit {
       if (data.success) {
         this.device = data.device;
       } else {
-        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show('Could not find device.', {cssClass: 'alert-danger', timeout: 6000});
+        this.router.navigate(['/dashboard']);
       }
     });
   }

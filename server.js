@@ -53,7 +53,7 @@ const logger       = require('morgan');
 // Local Dependencies ----------------------------------------------------------
 const db_config   = require('./config/database.js');
 const credentials = require('./config/credentials.js');
-const routes      = require('./routes/routes.js');
+const index      = require('./routes/index.js');
 const users       = require('./routes/users.js');
 
 // Paths -----------------------------------------------------------------------
@@ -107,7 +107,7 @@ require('./config/passport.js')(passport);
 app.set('port', process.env.PORT || _PORT);
 
 // Routes ----------------------------------------------------------------------
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 
 // Error Handlers --------------------------------------------------------------

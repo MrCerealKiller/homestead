@@ -20,17 +20,12 @@ export class RegisterComponent implements OnInit {
   passwordConf: String;
   sms_number: number;
 
-  constructor(private m_validateService: ValidateService,
-              private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_router: Router) { }
+  constructor(private validateService: ValidateService,
+              private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private router: Router) { }
 
   ngOnInit() {
-    document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
-  }
-
-  ngOnDestroy() {
-    document.getElementsByClassName('navbar-list-right')[0].classList.remove('hide');
   }
 
   onRegisterSubmit() {
@@ -42,22 +37,22 @@ export class RegisterComponent implements OnInit {
       sms_number: this.sms_number
     };
 
-    var validateResult = this.m_validateService.validateRegister(user);
+    var validateResult = this.validateService.validateRegister(user);
 
     if (validateResult.isErr) {
       //console.log(validateResult.msg);
-      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
+      this.fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
       return false;
     }
 
     // Register User to Backend
-    this.m_authService.registerUser(user).subscribe(data => {
+    this.authService.registerUser(user).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your account has been registered.", {cssClass: 'alert-success', timeout: 5000});
-        this.m_router.navigate(['/login']);
+        this.fmService.show("Your account has been registered.", {cssClass: 'alert-success', timeout: 5000});
+        this.router.navigate(['/login']);
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
-        this.m_router.navigate(['/register']);
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.router.navigate(['/register']);
       }
     });
   }
