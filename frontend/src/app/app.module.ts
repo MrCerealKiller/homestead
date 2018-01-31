@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { DeviceSettingsComponent } from './components/device-settings/device-settings.component';
 import { AboutComponent } from './components/about/about.component';
+import { DevicePageComponent } from './components/device-page/device-page.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthorizeService } from './services/authorize.service';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'settings/account', component: AccountSettingsComponent},
   {path: 'settings/devices', component: DeviceSettingsComponent},
+  {path: 'device/:id', component: DevicePageComponent},
   {path: 'about', component: AboutComponent}
 ]
 
@@ -42,7 +44,8 @@ const routes: Routes = [
     RegisterComponent,
     AccountSettingsComponent,
     DeviceSettingsComponent,
-    AboutComponent
+    AboutComponent,
+    DevicePageComponent
   ],
   imports: [
     BrowserModule,

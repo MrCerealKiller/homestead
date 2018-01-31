@@ -61,7 +61,7 @@
   margin: 0px auto;
   padding: 16px;
   width: 75%;
-  max-width: 312px; !important
+  max-width: 312px !important;
 
   text-align: center;
   align-content: center;
@@ -86,4 +86,19 @@
 .text-container#profile-page p {
   margin: 0px auto;
   padding: 0px;
+}
+
+.text-container#device-page {
+  margin: 80px auto;
+}
+
+.text-container#device-page h1, h2, h3, h4 {
+  margin-top: 16px;
+
+  text-align: center;
+  align-content: center;
+}
+
+.text-container#device-page p {
+  text-align: left;
 }
