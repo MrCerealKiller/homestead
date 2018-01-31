@@ -8,11 +8,11 @@
     <form class="settings-form" (submit)="onUpdateSubmit()">
       <div class="form-element">
         <label class="form-label">Preferred Email: </label>
-        <input class="form-textbox" type="text" [(ngModel)]="email" name="email">
+        <input class="form-textbox" type="text" [(ngModel)]="updateEmail" name="updateEmail">
       </div>
       <div class="form-element">
         <label class="form-label">Phone Number (Optional): </label>
-        <input class="form-textbox" type="text" [(ngModel)]="sms_number" name="sms_number">
+        <input class="form-textbox" type="text" [(ngModel)]="updateSmsNumber" name="updateSmsNumber">
         <p class="form-explanation">This will be used to send you custom alerts, if desired.</p>
       </div>
       <div class="form-element">

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { UserLogin } from '../../interfaces/user';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthorizeService } from '../../services/authorize.service';
 
@@ -27,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    var user = {
+    var user : UserLogin = {
       username: this.username,
       password: this.password,
       remember: this.remember

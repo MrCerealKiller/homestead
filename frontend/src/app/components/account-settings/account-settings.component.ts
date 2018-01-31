@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { User, UserUpdate } from '../../interfaces/user';
+import { Device } from '../../interfaces/device';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from '../../services/validate.service';
 import { AuthorizeService } from '../../services/authorize.service';
@@ -14,11 +17,11 @@ export class AccountSettingsComponent implements OnInit {
   headers: any;
   panels: any;
 
-  _id: String;
-  username: String;
-  email: String;
-  emailOrig: String
-  sms_number: number;
+  user: User;
+
+  updateEmail: String;
+  updateSmsNumber: String;
+  emailOrig: String;
 
   constructor(private m_validateService: ValidateService,
               private m_fmService: FlashMessagesService,
@@ -26,11 +29,18 @@ export class AccountSettingsComponent implements OnInit {
               private m_router: Router) { }
 
   ngOnInit() {
-    this.m_authService.getUser(localStorage.getItem('user')).subscribe(data => {
-      this._id = data.profile._id;
-      this.email = data.profile.email;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.m_authService.getUser(this.user).subscribe(data => {
+      this.user = data.profile;
       this.emailOrig = data.profile.email;
-      this.sms_number = data.profile.sms_number;
+
+      // Prefill
+      this.updateEmail = this.user.email;
+      if (<number>(this.user.sms_number)) {
+        this.updateSmsNumber = this.user.sms_number.toString();
+      } else {
+        this.updateSmsNumber = <String>this.user.sms_number;
+      }
     });
   }
 
@@ -55,14 +65,15 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   onUpdateSubmit() {
-    var update = {
-      _id: this._id,
-      email: this.email,
-      sms_number: this.sms_number,
+    var update : UserUpdate = {
+      _id: this.user._id,
+      username: this.user.username,
+      email: this.updateEmail,
+      sms_number: this.updateSmsNumber,
       isEmailUpdate: false
     };
 
-    if (this.email != this.emailOrig) {
+    if (update.email != this.emailOrig) {
       update.isEmailUpdate = true;
     }
 
@@ -95,7 +106,7 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   onConfirmDeleteSubmit() {
-    this.m_authService.deleteUser(this._id).subscribe(data => {
+    this.m_authService.deleteUser(this.user._id).subscribe(data => {
       if (data.success) {
         this.m_fmService.show("Your account has been deleted.", {cssClass: 'alert-normal', timeout: 5000});
         this.m_authService.logout();

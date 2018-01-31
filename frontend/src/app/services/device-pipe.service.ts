@@ -10,7 +10,7 @@ export class DevicePipeService {
   getUserDevices(user) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('username', JSON.parse(user).username);
+    headers.append('username', user.username);
 
     return this.m_http.get('http://localhost:3000/users/devices',
       {headers: headers}).map(res => res.json());

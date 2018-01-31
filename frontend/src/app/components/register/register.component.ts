@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { UserRegister } from '../../interfaces/user';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from '../../services/validate.service';
 import { AuthorizeService } from '../../services/authorize.service';
@@ -32,7 +34,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegisterSubmit() {
-    var user = {
+    var user : UserRegister = {
       username: this.username,
       email: this.email,
       password: this.password,

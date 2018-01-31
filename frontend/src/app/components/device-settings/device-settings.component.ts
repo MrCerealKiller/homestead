@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { User } from '../../interfaces/user';
+import { Device } from '../../interfaces/device';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from '../../services/validate.service';
 import { AuthorizeService } from '../../services/authorize.service';
@@ -14,18 +17,12 @@ import { DevicePipeService } from '../../services/device-pipe.service';
 })
 
 export class DeviceSettingsComponent implements OnInit {
-  username: String;
   headers: any;
   panels: any;
 
-  public devices = [{
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  }];
+  user: User;
+
+  devices: Device[];
 
   // Add Device
   addCustomId: String;
@@ -33,27 +30,13 @@ export class DeviceSettingsComponent implements OnInit {
   addIpAddress: String;
 
   // Update Device
-  public selectedUpdateDevice = {
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  };
+  selectedUpdateDevice: Device;
   updateCustomId: String;
   updateAssignedService: String;
   updateIpAddress: String;
 
   // Delete Device
-  public selectedDeleteDevice = {
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  };
+  selectedDeleteDevice: Device;
 
   constructor(private m_fmService: FlashMessagesService,
               private m_authService: AuthorizeService,
@@ -71,9 +54,8 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   updateLists() {
-    var user = localStorage.getItem('user');
-    this.username = JSON.parse(user).username;
-    this.m_devicePipeService.getUserDevices(user).subscribe(data => {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.m_devicePipeService.getUserDevices(this.user).subscribe(data => {
       if (data.success) {
         this.devices = data.devices;
       } else {
@@ -98,9 +80,9 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   onAddSubmit() {
-    var device = {
+    var device : Device = {
       customId: this.addCustomId,
-      user: this.username,
+      user: this.user.username,
       deviceService: this.addAssignedService,
       lastIpAddress: this.addIpAddress,
       lastStatusUpdate: 'New Device'
@@ -129,7 +111,6 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   prefillUpdateForm() {
-    console.log(this.selectedUpdateDevice);
     if (this.selectedUpdateDevice != null && this.selectedUpdateDevice != undefined) {
       this.updateCustomId = this.selectedUpdateDevice.customId;
       this.updateAssignedService = this.selectedUpdateDevice.deviceService;
@@ -138,10 +119,10 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   onUpdateSubmit() {
-    var update = {
+    var update : Device = {
       _id: this.selectedUpdateDevice._id,
       customId: this.updateCustomId,
-      user: this.selectedUpdateDevice.user,
+      user: this.user.username,
       deviceService: this.updateAssignedService,
       lastIpAddress: this.updateIpAddress,
       lastStatusUpdate: 'Renewing Connection'
