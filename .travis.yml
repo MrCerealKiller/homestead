@@ -52,7 +52,7 @@ jobs:
     # DEPLOY #################################################################
     - stage: deploy
       env:
-        - NODE_ENV=production
+        # Breaks build due to angualr bug | - NODE_ENV=production
       before_script:
         - cd frontend
         - rm -rf node_modules
