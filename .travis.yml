@@ -54,13 +54,14 @@ jobs:
       env:
         - NODE_ENV=production
       before_script:
+        - cd frontend
         - rm -rf node_modules
         - rm package-lock.json
         - npm install -g @angular/cli
         - npm install
         - npm link
       script:
-        - cd frontend && ls
+        - ls
         - ng build
         # WIP !!!
 
