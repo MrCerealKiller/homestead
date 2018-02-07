@@ -57,7 +57,7 @@ jobs:
       before_script:
         - npm install -g @angular/cli
       script:
-        - cd frontend && ng build
+        - cd frontend && ls && ng build
         # WIP !!!
 
 # NOTIFICATIONS ################################################################
