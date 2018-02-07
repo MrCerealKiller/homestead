@@ -35,10 +35,11 @@ jobs:
         - NODE_ENV=development
       before_install:
         - sudo apt-get update -qq
-        - npm install -g gulp-cli -y
-        - npm install -g @angular/cli -y
+        - npm install -g gulp-cli
+        - npm install -g angular-cli
       install:
         - npm install
+      script: skip
     # TEST #####################################################################
     - stage: test
       install: true
@@ -47,9 +48,8 @@ jobs:
       before_script:
         - sleep 15
       script:
-        gulp unitTest
-      script:
-        gulp integrationTest
+        - gulp unitTest
+        - gulp integrationTest
     # DEPLOY #################################################################
     - stage: deploy
       install: true

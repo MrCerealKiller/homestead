@@ -6,6 +6,7 @@
   "main": "homestead.js",
   "scripts": {
     "start": "nodejs server.js",
+    "install": "echo 'Not yet necessary'",
     "generate-docs": "node_modules/.bin/jsdoc --configure ./config/meta/jsdoc.json --verbose"
   },
   "author": "Jeremy Mallette",
