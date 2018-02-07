@@ -58,8 +58,10 @@ jobs:
         - rm package-lock.json
         - npm install -g @angular/cli
         - npm install
+        - npm link
       script:
-        - cd frontend && ng build
+        - cd frontend && ls
+        - ng build
         # WIP !!!
 
 # NOTIFICATIONS ################################################################

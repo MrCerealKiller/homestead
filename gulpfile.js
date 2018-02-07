@@ -3,16 +3,17 @@
 // ##############################
 
 const gulp = require('gulp');
+const imagemin = require('gulp-imagemin');
 
 // High-level ------------------------------------------------------------------
 
 gulp.task('unitTest', ['unitFront', 'unitBack'], function() {
-  console.log('You need tests to actually perform unit tests...');
+  return console.log('You need tests to actually perform unit tests...');
   process.exit(0);
 });
 
 gulp.task('integrationTest', ['integrateFront', 'integrateBack'], function() {
-  console.log('You need tests to actually perform integration tests...');
+  return console.log('You need tests to actually perform integration tests...');
   process.exit(0);
 });
 
@@ -37,11 +38,15 @@ gulp.task('integrateBack', function() {
 // Utilities -------------------------------------------------------------------
 
 gulp.task('clean', function() {
-  console.log('Clean is not yet implemented.');
+  return console.log('Clean is not yet implemented.');
   process.exit(0);
 });
 
+gulp.task('optimizeImg', function() {
+
+});
+
 gulp.task('watch', function() {
-  console.log('Watch is not yet implemented.');
+  return console.log('Watch is not yet implemented.');
   process.exit(0);
 });
