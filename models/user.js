@@ -22,7 +22,7 @@ const db_config = require('../config/database.js');
  * @default
  * @type {object}
  */
-const UserSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     username: {
         type: String,
         required: true
@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    sms_number: {
+    sms: {
         type: Number,
         required: false
     }
@@ -45,7 +45,7 @@ const UserSchema = mongoose.Schema({
  * @inner
  * @description Exports the above schema
  */
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = mongoose.model('User', userSchema);
 
 // Getters for User ------------------------------------------------------------
 /**
@@ -145,7 +145,7 @@ module.exports.updateUserById = function(user, callback) {
     }
 
     dbUser.email = user.email;
-    dbUser.sms_number = user.sms_number;
+    dbUser.sms = user.sms;
     dbUser.save(callback);
   });
 };

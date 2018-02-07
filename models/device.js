@@ -1,7 +1,7 @@
 /**
  * @file Model for Devices as stored on the database
  * @author Jeremy Mallette
- * @version 0.0.1
+ * @version 1.0.0
  * @module Models/Device
  *
  * @requires module:Mongoose
@@ -11,8 +11,9 @@
 // Imports ---------------------------------------------------------------------
 const mongoose  = require('mongoose');
 const db_config = require('../config/database.js');
+const dataSchema = require('./data.js');
 
-// Create Model ----------------------------------------------------------------
+// Create Models ---------------------------------------------------------------
 /**
  * @inner
  * @description Device Schema used to interact with MongoDb
@@ -20,38 +21,68 @@ const db_config = require('../config/database.js');
  * @default
  * @type {object}
  */
-const DeviceSchema = mongoose.Schema({
-  customId: {
+const deviceSchema = mongoose.Schema({
+  cid: {
     type: String,
+    trim: true,
     required: true
   },
   user: {
     type: String,
+    trim: true,
     required: true
   },
-  deviceService: {
+  service: {
     type: String,
+    trim: true,
     required: true
   },
-  lastIpAddress: {
+  ip: {
     type: String,
+    trim: true,
     required: true
   },
-  lastStatusUpdate: {
+  port: {
+    type: number,
+    min: [1, 'Cannot have a negative port'],
+    required: false
+  }
+  status: {
     type: String,
+    trim: true,
+    default: 'Offline',
+    enum: [
+      'Online',
+      'Offline',
+      'Warning',
+      'Critical',
+      'Reconnecting'
+    ],
+    required: true
+  },
+  handshake: {
+    type: String,
+    trim: true,
     required: false
   },
-  // dateLastUpdated: {
-  //   type: Date,
-  //   required: false
-  // }
-});
+  data: [dataSchema],
+  dataLimit: {
+    type: number,
+    min: 1,
+    max: 100,             // TODO : Change in production
+    required: true,
+  }
+}, {timestamps: true});
+
+deviceSchema.methods.updateCustomData = function(update, callback) {
+  this.data
+}
 
 /**
  * @inner
  * @description Exports the above schema
  */
-const Device = module.exports = mongoose.model('Device', DeviceSchema);
+const Device = module.exports = mongoose.model('Device', deviceSchema);
 
 // Getters for Device ----------------------------------------------------------
 /**
@@ -76,8 +107,8 @@ module.exports.getDeviceById = function(id, callback) {
  * device info
  * @deprecated Not ready for use yet (Possibly not necessary)
  */
-module.exports.getDeviceByCustomId = function(customId, callback) {
-  var query = {customId: customId};
+module.exports.getDeviceByCustomId = function(cid, callback) {
+  var query = {cid: cid};
   Device.findOne(query, callback);
 };
 
@@ -91,8 +122,8 @@ module.exports.getDeviceByCustomId = function(customId, callback) {
  * device info
  * @deprecated Not ready for use yet (Possibly not necessary)
  */
-module.exports.getDeviceByIpAddress = function(ipAddress, callback) {
-  var query = {lastIpAddress: ipAddress};
+module.exports.getDeviceByIpAddress = function(ip, callback) {
+  var query = {ip: ip};
   Device.findOne(query, callback);
 };
 
@@ -137,12 +168,13 @@ module.exports.addDevice = function(device, callback) {
       throw err;
     }
 
-    dbDevice.customId = device.customId;
-    dbDevice.userId = device.userId;
-    dbDevice.deviceService = device.deviceService;
-    dbDevice.lastIpAddress = device.lastIpAddress;
-    dbDevice.lastStatusUpdate = device.lastStatusUpdate;
-    dbDevice.dateLastUpdated = device.dateLastUpdated;
+    dbDevice.cid = device.cid;
+    dbDevice.service = device.service;
+    dbDevice.ip = device.ip;
+    dbDevice.port = device.port;
+    dbDevice.status = device.status;
+    dbDevice.lastUpdate = device.lastUpdate;
+    dbDevice.handshake = device.handshake;
     dbDevice.save(callback);
   });
 };
