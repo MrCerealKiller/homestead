@@ -54,9 +54,12 @@ jobs:
       env:
         - NODE_ENV=production
       before_script:
+        - rm -rf node_modules
+        - rm package-lock.json
         - npm install -g @angular/cli
+        - npm install
       script:
-        - cd frontend && ls && ng build
+        - cd frontend && ng build
         # WIP !!!
 
 # NOTIFICATIONS ################################################################
