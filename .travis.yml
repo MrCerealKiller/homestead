@@ -30,18 +30,18 @@ jobs:
   include:
     # PRE-CACHE ################################################################
     - stage: pre cache
-      install: true
+      install: false
       env:
         - NODE_ENV=development
       before_install:
         - sudo apt-get update -qq
-        - npm install -g gulp-cli
-        - npm install -g angular-cli
+        - npm install -g gulp-cli -y
+        - npm install -g @angular/cli -y
       install:
         - npm install
     # TEST #####################################################################
     - stage: test
-      install: false
+      install: true
       env:
         - NODE_ENV=development
       before_script:
@@ -52,7 +52,7 @@ jobs:
         gulp integrationTest
     # DEPLOY #################################################################
     - stage: deploy
-      install: false
+      install: true
       env:
         - NODE_ENV=production
       script:
