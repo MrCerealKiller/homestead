@@ -44,7 +44,6 @@ const _PORT_PRODUCTION = 80
 const express      = require('express');
 const path         = require('path');
 const bodyParser   = require('body-parser');
-const cookieParser = require('cookie-parser');
 const passport     = require('passport');
 const mongoose     = require('mongoose');
 const cors         = require('cors');
@@ -52,7 +51,6 @@ const logger       = require('morgan');
 
 // Local Dependencies ----------------------------------------------------------
 const db_config   = require('./config/database.js');
-const credentials = require('./config/credentials.js');
 const routes      = require('./routes/routes.js');
 const users       = require('./routes/users.js');
 
@@ -92,7 +90,6 @@ app.use(express.static(staticPath));
 
 // Parsers
 app.use(bodyParser.json());
-app.use(cookieParser(credentials.cookie));
 
 // Authentification
 app.use(passport.initialize());
@@ -110,19 +107,9 @@ app.set('port', process.env.PORT || _PORT);
 app.use('/', routes);
 app.use('/users', users);
 
-// Error Handlers --------------------------------------------------------------
+// Fallback to index.html ------------------------------------------------------
 app.use(function(req, res) {
-    var err = new Error('Not Found');
-    res.status(404);
-    res.type('text/html');
-    res.render('404');
-});
-
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    console.error(error.stack);
-    res.type('text/html');
-    res.render('500');
+    res.sendFile(staticPath + '/index.html');
 });
 
 // Listen to Port --------------------------------------------------------------
