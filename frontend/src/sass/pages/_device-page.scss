@@ -1,0 +1,20 @@
+/**
+ * Elements Belonging to the Device Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.text-container#device-page {
+  margin: 80px auto;
+}
+
+.text-container#device-page h1, h2, h3, h4 {
+  margin-top: 16px;
+
+  text-align: center;
+  align-content: center;
+}
+
+.text-container#device-page p {
+  text-align: left;
+}

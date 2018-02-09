@@ -1,8 +1,5 @@
 /**
- * Dashboard Table
- *
- * Styles and CSS Functionality for the Dashboard device table
- *
+ * Elements Belonging to the Dashboard Page
  * @author Jeremy Mallette
  * @version 1.0.0
  */
@@ -14,18 +11,18 @@
   overflow: auto;
   width: 90%;
 
-  outline: 4px solid #DC143C;
+  outline: 4px solid $theme-color-dark;
   border-collapse: collapse;
   border-spacing: 0px;
 }
 
 .dashboard-table .dashboard-table-header {
-  padding: 10px;
+  padding: $padding-standard;
 
-  background-color: #DC143C;
-  color: #FFFFFF;
+  background-color: $theme-color-dark;
+  color: $theme-color-stark;
 
-  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-family: $font-deco;
   font-size: 18px;
   text-align: center;
 }
@@ -35,19 +32,18 @@
 }
 
 .dashboard-table .dashboard-table-cell {
-  padding: 10px;
+  padding: $padding-standard;
 
-  font-family: "Montserrat", helvetica, sans-serif;
-  font-size: 14px;
+  @include font($font-main, 0.8em, $theme-color-font);
   text-align: center;
 }
 
-/* Alternate Row Colours */
+// Alternate Row Colours
 .dashboard-table .dashboard-table-row:nth-child(even) {
-  background-color: #F2F2F2;
+  background-color: $background-off;
 }
 
-/* Highlight Hover Row */
+// Highlight Hover Row
 .dashboard-table .dashboard-table-row:hover {
-  background-color: #F6CECE;
+  background-color: $theme-color-light;
 }

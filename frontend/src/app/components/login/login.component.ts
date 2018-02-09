@@ -8,8 +8,7 @@ import { AuthorizeService } from '../../services/authorize.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 
 export class LoginComponent implements OnInit {

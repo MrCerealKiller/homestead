@@ -1,0 +1,74 @@
+# SETUP ########################################################################
+sudo: true
+env:
+  global:
+    - TRAVIS_ALLOW_FAILURE=false
+
+# LANGUAGE OPTIONS
+language: node_js
+node_js:
+  - "stable"
+
+# DEFINE USED BRANCHES
+branches:
+  only:
+    - master
+    - dev
+    - /^release/*$/
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
+# SETUP SERVICES
+services:
+  - mongodb
+
+# MARK CACHE
+cache:
+  directories:
+    "node_modules"
+
+jobs:
+  include:
+    # PRE-CACHE ################################################################
+    - stage: pre cache
+      install: false
+      env:
+        - NODE_ENV=development
+      before_install:
+        - sudo apt-get update -qq
+        - npm install -g gulp-cli
+      install:
+        - npm install
+      script: skip
+    # TEST #####################################################################
+    - stage: test
+      install: true
+      env:
+        - NODE_ENV=development
+      before_script:
+        - sleep 15
+      script:
+        - gulp unitTest
+        - gulp integrationTest
+    # DEPLOY #################################################################
+    - stage: deploy
+      env:
+        # Breaks build due to angualr bug | - NODE_ENV=production
+      before_script:
+        - cd frontend
+        - rm -rf node_modules
+        - rm package-lock.json
+        - npm install -g @angular/cli
+        - npm install
+        - npm link
+      script:
+        - ng build
+        # WIP !!!
+
+# NOTIFICATIONS ################################################################
+notifications:
+  email: false
+  slack:
+    rooms:
+      - homestead-chat:2gHklz2I9L6OlrCk8rh6kkwf#build
+    on_success: change
+    on_failure: always

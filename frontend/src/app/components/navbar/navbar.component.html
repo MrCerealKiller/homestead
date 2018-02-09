@@ -20,11 +20,11 @@
       </a>
     </li>
     <li *ngIf="authService.isLoggedIn()" class="navbar-button">
-      <div class="navbar-dropdown">
+      <div class="dropdown">
         <a (click)="onSettingsClicked()">
-          <img class="navbar-dropdown-init selectDisable" src="/assets/img/gear.png" alt="Image: settings"/>
+          <img class="dropdown selectDisable" src="/assets/img/gear.png" alt="Image: settings"/>
         </a>
-        <div class="navbar-dropdown-content" id="settingsDropdown">
+        <div class="dropdown-content" id="settingsDropdown">
           <button class="dropbutton selectDisable" [routerLink]="['/settings/account']">Account Settings</button>
           <button class="dropbutton selectDisable" [routerLink]="['/settings/devices']">Device Settings</button>
           <button class="dropbutton selectDisable" [routerLink]="['/about']">About</button>

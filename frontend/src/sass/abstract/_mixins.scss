@@ -1,0 +1,56 @@
+/**
+ * SASS Mixins
+ * @author Jeremy Mallette
+ * @version 1.0.0s
+ */
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      type-of($raw-query) == 'string',
+      unquote($raw-query),
+      inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`';
+  }
+}
+
+@mixin prefix($property, $value) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin z($layer) {
+  @if not map-has-key($z-indexes, $layer) {
+    @error 'There is no layer named `#{$layer}` in $z-indexes. '
+         + 'Layer should be one of #{map-keys($z-indexes)}.';
+  }
+  z-index: map-get($z-indexes, $layer);
+}
+
+@mixin font($font: false, $size: false, $colour: false) {
+    @if $font {font-family: $font; }
+    @if $size { font-size: $size; }
+    @if $colour { color: $colour; }
+}
+
+@mixin push--auto {
+    margin: {
+    left: auto;
+    right: auto;
+  }
+}

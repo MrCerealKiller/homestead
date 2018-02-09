@@ -1,0 +1,82 @@
+/**
+ * Navbar Style and Functionality
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+// Whole Navbar
+.navbar {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include z(navbar);
+
+  width: 100%;
+  min-width: 350px;
+  height: $navbar-thickness;
+
+  background-color: $theme-color-dark;
+  box-shadow: $shadow-lite;
+}
+
+.navbar-list-left {
+  float: left;
+
+  margin: 0;
+  padding: 0;
+  padding-left: $padding-standard;
+  height: $navbar-thickness;
+}
+
+.navbar-list-right {
+  float: right;
+
+  margin: 0;
+  padding: 0;
+  padding-right: $padding-standard;
+  height: $navbar-thickness;
+}
+
+.navbar-button {
+  display: inline;
+}
+
+.navbar-button a {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  width: $navbar-thickness;
+  height: $navbar-thickness;
+
+  text-decoration: none;
+}
+
+// Highlight Hover Button
+.navbar-list-right a:hover {
+  background-color: $theme-color-light;
+}
+
+.navbar-button img {
+  display: inline;
+  width: $navbar-thickness;
+  height: $navbar-thickness;
+}
+
+.navbar-button #navbar-title {
+  // Make inline-and center vertically
+  position: relative;
+  // This just kinda works...
+  top: -30%;
+  // transform: translateY(-60%);
+  height: $navbar-thickness;
+  padding-left: $padding-thin;
+
+  @include font($font-deco, 24px, $theme-color-stark);
+  font-style: normal;
+  text-align: left;
+}
+
+#navbar-dropdown {
+  right: 0;
+}

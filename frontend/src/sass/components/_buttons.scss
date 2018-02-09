@@ -1,0 +1,43 @@
+/**
+ * Various Buttons
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.button-dark {
+  display: inline-block;
+  border: none;
+  min-width: 100px;
+  margin: $margin-thin;
+  padding: $padding-standard;
+
+  background-color: $theme-color-dark;
+
+  box-shadow: $shadow-main;
+
+  @include font($font-main, 1em, $theme-color-stark);
+  cursor: pointer;
+}
+
+.button-dark:hover {
+  background-color: $theme-color-light;
+  color: $theme-color-font;
+}
+
+.button-light {
+  display: inline-block;
+  border: none;
+  min-width: 100px;
+  margin: $margin-thin;
+  padding: $padding-standard;
+
+  background-color: $background-off;
+  box-shadow: $shadow-main;
+
+  @include font($font-main, 1em, $theme-color-font);
+  cursor: pointer;
+}
+
+.button-light:hover {
+  background-color: $theme-color-light;
+}
