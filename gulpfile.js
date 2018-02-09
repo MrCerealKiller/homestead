@@ -3,6 +3,7 @@
 // ##############################
 
 const gulp     = require('gulp');
+const del      = require('del');
 const sass     = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
 
@@ -39,8 +40,7 @@ gulp.task('integrateBack', function() {
 // Utilities -------------------------------------------------------------------
 
 gulp.task('clean', function() {
-  return console.log('Clean is not yet implemented.');
-  process.exit(0);
+  return del(['public/**', '!public/'], {force:true});
 });
 
 gulp.task('sassy', function () {
