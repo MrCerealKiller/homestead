@@ -11,7 +11,7 @@
 // Imports ---------------------------------------------------------------------
 const mongoose  = require('mongoose');
 const db_config = require('../config/database.js');
-const dataSchema = require('./data.js');
+// const dataSchema = require('./data.js');
 
 // Create Models ---------------------------------------------------------------
 /**
@@ -43,40 +43,40 @@ const deviceSchema = mongoose.Schema({
     required: true
   },
   port: {
-    type: number,
+    type: Number,
     min: [1, 'Cannot have a negative port'],
     required: false
-  }
+  },
   status: {
     type: String,
     trim: true,
     default: 'Offline',
-    enum: [
-      'Online',
-      'Offline',
-      'Warning',
-      'Critical',
-      'Reconnecting'
-    ],
+    // enum: [
+    //   'Online',
+    //   'Offline',
+    //   'Warning',
+    //   'Critical',
+    //   'Reconnecting'
+    // ],
     required: true
-  },
-  handshake: {
-    type: String,
-    trim: true,
-    required: false
-  },
-  data: [dataSchema],
-  dataLimit: {
-    type: number,
-    min: 1,
-    max: 100,             // TODO : Change in production
-    required: true,
   }
+  // handshake: {
+  //   type: String,
+  //   trim: true,
+  //   required: false
+  // },
+  // data: [dataSchema],
+  // dataLimit: {
+  //   type: number,
+  //   min: 1,
+  //   max: 100,             // TODO : Change in production
+  //   required: true,
+  // }
 }, {timestamps: true});
 
-deviceSchema.methods.updateCustomData = function(update, callback) {
-  this.data
-}
+// deviceSchema.methods.updateCustomData = function(update, callback) {
+//   this.data
+// }
 
 /**
  * @inner
