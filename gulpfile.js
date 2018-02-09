@@ -50,16 +50,15 @@ gulp.task('sassy', function () {
 });
 
 gulp.task('optimizeImg', function() {
-
 });
 
 // Watchers --------------------------------------------------------------------
 
-gulp.task('watch', function() {
+gulp.task('watch:server', function() {
   return console.log('Watch is not yet implemented.');
   process.exit(0);
 });
 
-gulp.task('sassy:watch', function () {
+gulp.task('watch:sassy', function () {
   gulp.watch('./frontend/src/sass/**/*.scss', ['sassy']);
 });

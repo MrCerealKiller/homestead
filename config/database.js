@@ -14,5 +14,6 @@
  */
 module.exports = {
     database: 'mongodb://localhost:27017/homestead',
+    opts: {useMongoClient: true},
     key: 'welcome-bienvenue-benvenuto-okaeri-5267d'
 }
