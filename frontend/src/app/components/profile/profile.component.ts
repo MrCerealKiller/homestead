@@ -6,8 +6,7 @@ import { AuthorizeService } from '../../services/authorize.service';
 
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
   _id: String;

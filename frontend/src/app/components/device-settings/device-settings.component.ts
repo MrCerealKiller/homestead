@@ -9,10 +9,8 @@ import { DevicePipeService } from '../../services/device-pipe.service';
 
 @Component({
   selector: 'app-device-settings',
-  templateUrl: './device-settings.component.html',
-  styleUrls: ['./device-settings.component.css']
+  templateUrl: './device-settings.component.html'
 })
-
 export class DeviceSettingsComponent implements OnInit {
   username: String;
   headers: any;

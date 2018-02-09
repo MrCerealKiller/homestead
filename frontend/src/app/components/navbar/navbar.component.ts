@@ -7,8 +7,7 @@ import { AuthorizeService } from '../../services/authorize.service';
 @Component({
   selector: 'app-navbar',
   host: {'(document:click)': 'onOutsideClicked($event)'},
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
 
@@ -30,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onOutsideClicked(event) {
-    if (!event.target.matches('.navbar-dropbutton') && !event.target.matches('.navbar-dropdown-init')) {
+    if (!event.target.matches('.dropdown')) {
       var settingsDropdown = document.getElementById('settingsDropdown');
       if (settingsDropdown.classList.contains('show')) {
         settingsDropdown.classList.remove('show');

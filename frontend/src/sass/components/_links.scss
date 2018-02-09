@@ -1,23 +1,20 @@
 /**
- * Links
- *
- * Formats all links according to uniform style
- *
+ * Default Link Format
  * @author Jeremy Mallette
  * @version 1.0.0
  */
 
 a:hover {
-  color: #F6CECE;
+  color: $theme-color-light;
   text-decoration: none;
 }
 
 a:active {
-  color: #DC143C;
+  color: $theme-color-dark;
   text-decoration: none;
 }
 
 a:visited {
-  color: #151515;
+  color: $theme-color-font;
   text-decoration: none;
 }

@@ -1,0 +1,39 @@
+/**
+ * Styles Root
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+@charset "UTF-8";
+
+@import 'base/reset';
+@import 'base/base';
+@import 'base/typography';
+
+@import 'abstract/mixins';
+@import 'abstract/tags';
+@import 'abstract/variables';
+
+@import 'vendors/bootstrap';
+
+@import 'partials/containers';
+@import 'partials/forms';
+@import 'partials/navbar';
+
+@import 'components/alerts';
+@import 'components/buttons';
+@import 'components/collapsibles';
+@import 'components/dropdown';
+@import 'components/links';
+@import 'components/modals';
+@import 'components/tooltips';
+
+@import 'pages/about';
+@import 'pages/dashboard';
+@import 'pages/home';
+@import 'pages/profile';
+
+@import 'animations/simple';
+
+@import 'misc/particles';
+@import 'misc/shame';

@@ -1,0 +1,54 @@
+/**
+ * Generic Containers
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.container {
+  margin: $margin-standard auto;
+  padding: $padding-standard;
+  text-align: center;
+  align-content: center;
+}
+
+.text-container {
+  width: 80%;
+  margin: $margin-standard auto;
+  padding: $padding-standard;
+
+  background-color: $background-off;
+  box-shadow: $shadow-main;
+}
+
+.backdrop-img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: $shadow-main;
+}
+
+.dual-vertical-container {
+  display: inline-block;
+  margin: 0px auto;
+  padding: $padding-standard;
+  width: 40%;
+
+  text-align: center;
+  align-content: center;
+}
+
+.dual-vertical-container img {
+  display: block;
+  margin: 0px auto;
+  padding: $padding-standard;
+  width: 75%;
+  max-width: 312px !important;
+
+  text-align: center;
+  align-content: center;
+}

@@ -1,40 +1,35 @@
 /**
- * Generic Containers
- *
- * Generic containers with a focus on function and positioning rather than style
- *
+ * Collapsible Content
  * @author Jeremy Mallette
  * @version 1.0.0
  */
 
 .collapse-header {
-  padding: 16px;
+  padding: $padding-standard;
   width: 100%;
 
-  background-color: #F2F2F2;
-  color: #151515;
+  background-color: $background-off;
   border: none;
   outline: none;
   cursor: pointer;
   text-align: left;
-  font-family: "Montserrat", helvetica, sans-serif;
-  font-size: 1.2em;
+  @include font($font-main, 1.2em, $theme-color-font);
   text-decoration: none;
 
   transition: 0.2s;
  }
 
  .active-header, .collapse-header:hover {
-   background-color: #DC143C;
-   color: #FFFFFF;
+   background-color: $theme-color-dark;
+   color: $theme-color-stark;
   }
 
 .collapse-panel {
-  padding: 0 16px;
+  padding: 0 $padding-standard;
   max-height: 0;
   overflow: hidden;
 
-  background-color: #F2F2F2;
+  background-color: $background-off;
 
   transition: max-height 0.2s ease-out;
 }

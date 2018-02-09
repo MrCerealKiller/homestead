@@ -1,0 +1,63 @@
+/**
+ * Global Variables
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+// Colors
+$theme-color-dark: #DC143C;
+$theme-color-light: #F6CECE;
+$theme-color-font: #151515;
+$theme-color-stark: #FFFFFF;
+$background-page: #DCDCDC;
+$background-off: #F2F2F2;
+$background-stark: #FFFFFF;
+
+// Fonts
+$font-deco: ('Share Tech Mono', 'Courier New', Courier, monospace);
+$font-main: ('Montserrat', helvetica, sans-serif);
+
+// Shadows
+$shadow-lite: (0px 2px 16px 0px rgba(0,0,0,0.2));
+$shadow-main: (0px 8px 16px 0px rgba(0,0,0,0.2));
+$shadow-up: (0px -8px 16px 0px rgba(0,0,0,0.2));
+
+// Breakpoints
+$breakpoints: (
+  'tiny': 400px,
+  'small': 600px,
+  'medium': 800px,
+  'large': 1000px,
+  'huge': 1200px
+);
+
+$z-indexes: (
+  'alerts': 999999,
+  'tooltips': 999999,
+  'modal-content': 999999,
+  'modal': 99999,
+  'navbar': 9999,
+  'dropdown': 999,
+  'abs-content': 1
+);
+
+// Prefixes
+$prefixes: (
+  'webkit',
+  'khtml',
+  'mos',
+  'o'
+);
+
+// Padding
+$padding-thin: 8px;
+$padding-standard: 16px;
+$padding-thick: 32px;
+
+// Padding
+$margin-thin: 8px;
+$margin-standard: 16px;
+$margin-thick: 32px;
+
+// Misc
+$navbar-thickness: 48px;

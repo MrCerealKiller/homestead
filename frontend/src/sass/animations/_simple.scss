@@ -1,8 +1,5 @@
 /**
  * Simple CSS Animations
- *
- * Misc. animations that do not warrant their own files and can be replicated
- *
  * @author Jeremy Mallette
  * @version 1.0.0
  */
@@ -11,20 +8,6 @@
   0% {opacity: 0;}
   50% {opacity: 0.4;}
   100% {opacity: 0;}
-}
-
-#homestead-img-ascii {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
-  opacity: 0;
-
-  -webkit-animation: slowPulse 7s infinite 2s;
-  -webkit-animation-timing-function: ease-in-out;
-  animation: slowPulse 7s infinite 2s;
-  animation-timing-function: ease-in-out;
 }
 
 @keyframes fade {

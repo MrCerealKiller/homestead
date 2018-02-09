@@ -1,19 +1,15 @@
 /**
- * Generic Classes
- *
- * Generic classes with a focus on functional attributes rather than stylistic
- * ones. These are to be added, toggled, etc. to perform a task
- *
+ * Tags that Give Elements Useful Properties
  * @author Jeremy Mallette
  * @version 1.0.0
  */
 
-.show {
-  display: block;
-}
+ .show {
+   display: block !important;
+ }
 
-.hide {
-  display: none;
+.disable {
+  display: none !important;
 }
 
 .left {
@@ -24,17 +20,13 @@
   float: right;
 }
 
-.small-font {
-  font-size: 0.8em;
-}
-
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
 }
 
-/* This class disables the user highlight/select of an element */
+// This class disables the user highlight/select of an element
 .selectDisable {
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -43,7 +35,7 @@
   user-select: none;
 }
 
-/* This class enables the user highlight/select of an element */
+// This class enables the user highlight/select of an element
 .selectEnable {
   -webkit-user-select: text;
   -khtml-user-select: text;
