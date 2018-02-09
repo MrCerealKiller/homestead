@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { UserLogin } from '../../interfaces/user';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthorizeService } from '../../services/authorize.service';
 
@@ -8,38 +10,34 @@ import { AuthorizeService } from '../../services/authorize.service';
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
+
 export class LoginComponent implements OnInit {
   username: String;
   password: String;
   remember: boolean;
 
-  constructor(private m_authService: AuthorizeService,
-              private m_fmService: FlashMessagesService,
-              private m_router: Router) { }
+  constructor(private authService: AuthorizeService,
+              private fmService: FlashMessagesService,
+              private router: Router) { }
 
   ngOnInit() {
-    document.getElementsByClassName('navbar-list-right')[0].classList.add('hide');
-  }
-
-  ngOnDestroy() {
-    document.getElementsByClassName('navbar-list-right')[0].classList.remove('hide');
   }
 
   onLoginSubmit() {
-    var user = {
+    var user : UserLogin = {
       username: this.username,
       password: this.password,
       remember: this.remember
     }
 
     if (user.username && user.password) {
-      this.m_authService.authenticateUser(user).subscribe(data => {
+      this.authService.authenticateUser(user).subscribe(data => {
         if (data.success) {
-          this.m_authService.storeUserData(data.token, data.user);
-          this.m_router.navigate(['/dashboard']);
+          this.authService.storeUserData(data.token, data.user);
+          this.router.navigate(['/dashboard']);
         } else {
-          this.m_fmService.show(data.msg, {cssClass: 'alert-danger fade-in-out', timeout: 6000});
-          this.m_router.navigate(['/login']);
+          this.fmService.show(data.msg, {cssClass: 'alert-danger fade-in-out', timeout: 6000});
+          this.router.navigate(['/login']);
         }
       });
     }

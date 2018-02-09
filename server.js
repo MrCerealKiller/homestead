@@ -51,7 +51,7 @@ const logger       = require('morgan');
 
 // Local Dependencies ----------------------------------------------------------
 const db_config   = require('./config/database.js');
-const routes      = require('./routes/routes.js');
+const index       = require('./routes/index.js');
 const users       = require('./routes/users.js');
 
 // Paths -----------------------------------------------------------------------
@@ -65,10 +65,10 @@ const app = express();
 // ##############
 
 // Initialize Mongoose ---------------------------------------------------------
-mongoose.connect(db_config.database);
+mongoose.connect(db_config.database, db_config.opts);
 
 mongoose.connection.on('connected', function() {
-    console.log('Mongoose sucessfully connected to homestead database');
+    console.log('Sucessfully connected to Homestead database\n\n');
 });
 
 mongoose.connection.on('error', function(err) {
@@ -104,7 +104,7 @@ require('./config/passport.js')(passport);
 app.set('port', process.env.PORT || _PORT);
 
 // Routes ----------------------------------------------------------------------
-app.use('/', routes);
+app.use('/', index);
 app.use('/users', users);
 
 // Fallback to index.html ------------------------------------------------------

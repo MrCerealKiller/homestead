@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { User } from '../../interfaces/user';
+import { Device } from '../../interfaces/device';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from '../../services/validate.service';
 import { AuthorizeService } from '../../services/authorize.service';
@@ -12,18 +15,12 @@ import { DevicePipeService } from '../../services/device-pipe.service';
   templateUrl: './device-settings.component.html'
 })
 export class DeviceSettingsComponent implements OnInit {
-  username: String;
   headers: any;
   panels: any;
 
-  public devices = [{
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  }];
+  user: User;
+
+  devices: Device[];
 
   // Add Device
   addCustomId: String;
@@ -31,33 +28,19 @@ export class DeviceSettingsComponent implements OnInit {
   addIpAddress: String;
 
   // Update Device
-  public selectedUpdateDevice = {
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  };
+  selectedUpdateDevice: Device;
   updateCustomId: String;
   updateAssignedService: String;
   updateIpAddress: String;
 
   // Delete Device
-  public selectedDeleteDevice = {
-    _id: "",
-    user: "",
-    customId: "",
-    deviceService: "",
-    lastIpAddress: "",
-    lastStatusUpdate: ""
-  };
+  selectedDeleteDevice: Device;
 
-  constructor(private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_validateService: ValidateService,
-              private m_devicePipeService: DevicePipeService,
-              private m_router: Router) { }
+  constructor(private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private validateService: ValidateService,
+              private devicePipeService: DevicePipeService,
+              private router: Router) { }
 
   ngOnInit() {
     this.updateLists();
@@ -69,13 +52,12 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   updateLists() {
-    var user = localStorage.getItem('user');
-    this.username = JSON.parse(user).username;
-    this.m_devicePipeService.getUserDevices(user).subscribe(data => {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.devicePipeService.getUserDevices(this.user, null).subscribe(data => {
       if (data.success) {
         this.devices = data.devices;
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }
@@ -96,38 +78,37 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   onAddSubmit() {
-    var device = {
+    var device : Device = {
       customId: this.addCustomId,
-      user: this.username,
+      user: this.user.username,
       deviceService: this.addAssignedService,
       lastIpAddress: this.addIpAddress,
       lastStatusUpdate: 'New Device'
     };
 
-    var validateResult = this.m_validateService.validateDevice(device);
+    var validateResult = this.validateService.validateDevice(device);
 
     if (validateResult.isErr) {
       //console.log(validateResult.msg);
-      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
+      this.fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
       return false;
     }
 
     // Save New Device to Backend
-    this.m_devicePipeService.addDevice(device).subscribe(data => {
+    this.devicePipeService.addDevice(device).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your device has been added.", {cssClass: 'alert-normal', timeout: 5000});
+        this.fmService.show("Your device has been added.", {cssClass: 'alert-normal', timeout: 5000});
         this.addCustomId = null;
         this.addAssignedService = null;
         this.addIpAddress = null;
         this.updateLists();
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }
 
   prefillUpdateForm() {
-    console.log(this.selectedUpdateDevice);
     if (this.selectedUpdateDevice != null && this.selectedUpdateDevice != undefined) {
       this.updateCustomId = this.selectedUpdateDevice.customId;
       this.updateAssignedService = this.selectedUpdateDevice.deviceService;
@@ -136,38 +117,48 @@ export class DeviceSettingsComponent implements OnInit {
   }
 
   onUpdateSubmit() {
-    var update = {
+    if (this.selectedUpdateDevice == null || this.selectedUpdateDevice == undefined) {
+      this.fmService.show('Please select a device.', {cssClass: 'alert-normal', timeout: 6000});
+      return false;
+    }
+
+    var update : Device = {
       _id: this.selectedUpdateDevice._id,
       customId: this.updateCustomId,
-      user: this.selectedUpdateDevice.user,
+      user: this.user.username,
       deviceService: this.updateAssignedService,
       lastIpAddress: this.updateIpAddress,
       lastStatusUpdate: 'Renewing Connection'
     };
 
-    var validateResult = this.m_validateService.validateDevice(update);
+    var validateResult = this.validateService.validateDevice(update);
 
     if (validateResult.isErr) {
       //console.log(validateResult.msg);
-      this.m_fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
+      this.fmService.show(validateResult.msg, {cssClass: 'alert-danger', timeout: 6000});
       return false;
     }
 
     // Save Update to Backend
-    this.m_devicePipeService.updateDevice(update).subscribe(data => {
+    this.devicePipeService.updateDevice(update).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your device has been updated.", {cssClass: 'alert-normal', timeout: 5000});
+        this.fmService.show("Your device has been updated.", {cssClass: 'alert-normal', timeout: 5000});
         this.updateCustomId = null;
         this.updateAssignedService = null;
         this.updateIpAddress = null;
         this.updateLists();
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }
 
   onDeleteSubmit() {
+    if (this.selectedDeleteDevice == null || this.selectedDeleteDevice == undefined) {
+      this.fmService.show('Please select a device.', {cssClass: 'alert-normal', timeout: 6000});
+      return false;
+    }
+
     // Show Modal Window
     document.getElementById('deleteModal').style.display = "block";
   }
@@ -180,13 +171,13 @@ export class DeviceSettingsComponent implements OnInit {
   onConfirmDeleteSubmit() {
     var id = this.selectedDeleteDevice._id;
 
-    this.m_devicePipeService.deleteDevice(id).subscribe(data => {
+    this.devicePipeService.deleteDevice(id).subscribe(data => {
       if (data.success) {
-        this.m_fmService.show("Your device has been deleted.", {cssClass: 'alert-normal', timeout: 5000});
+        this.fmService.show("Your device has been deleted.", {cssClass: 'alert-normal', timeout: 5000});
         document.getElementById('deleteModal').style.display = "none";
         this.updateLists();
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }

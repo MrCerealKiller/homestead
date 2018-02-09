@@ -22,7 +22,7 @@
       <th class="dashboard-table-header">Last Updated</th>
     </tr>
     <tbody>
-      <tr class="dashboard-table-row" *ngFor="let device of devices">
+      <tr class="dashboard-table-row" *ngFor="let device of devices" [routerLink]="['/device/' + device._id]">
         <td class="dashboard-table-cell">{{device.customId}}</td>
         <td class="dashboard-table-cell">{{device.deviceService}}</td>
         <td class="dashboard-table-cell">{{device.lastIpAddress}}</td>

@@ -9,11 +9,12 @@ import { AuthorizeService } from '../../services/authorize.service';
   host: {'(document:click)': 'onOutsideClicked($event)'},
   templateUrl: './navbar.component.html'
 })
+
 export class NavbarComponent implements OnInit {
 
-  constructor(private m_authService: AuthorizeService,
-              private m_fmService: FlashMessagesService,
-              private m_router: Router) { }
+  constructor(private authService: AuthorizeService,
+              private fmService: FlashMessagesService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -23,16 +24,18 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogoutClicked() {
-    this.m_authService.logout();
-    this.m_fmService.show('You\'ve been logged out', {cssClass: 'alert-normal fade-in-out', timeout: 5000});
-    this.m_router.navigate(['/login']);
+    this.authService.logout();
+    this.fmService.show('You\'ve been logged out', {cssClass: 'alert-normal fade-in-out', timeout: 5000});
+    this.router.navigate(['/login']);
   }
 
   onOutsideClicked(event) {
-    if (!event.target.matches('.dropdown')) {
-      var settingsDropdown = document.getElementById('settingsDropdown');
-      if (settingsDropdown.classList.contains('show')) {
-        settingsDropdown.classList.remove('show');
+    if (this.authService.isLoggedIn()) {
+      if (!event.target.matches('.dropdown')) {
+        var settingsDropdown = document.getElementById('settingsDropdown');
+        if (settingsDropdown.classList.contains('show')) {
+          settingsDropdown.classList.remove('show');
+        }
       }
     }
   }

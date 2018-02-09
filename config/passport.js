@@ -1,7 +1,7 @@
 /**
  * @file Authentification Strategy using Passport with a JWT implementation
  * @author Jeremy Mallette
- * @version 0.0.1
+ * @version 1.0.0
  * @module Config/Passport
  *
  * @requires module:Passport-JWT

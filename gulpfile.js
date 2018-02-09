@@ -3,6 +3,7 @@
 // ##############################
 
 const gulp     = require('gulp');
+const del      = require('del');
 const sass     = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
 
@@ -39,8 +40,7 @@ gulp.task('integrateBack', function() {
 // Utilities -------------------------------------------------------------------
 
 gulp.task('clean', function() {
-  return console.log('Clean is not yet implemented.');
-  process.exit(0);
+  return del(['public/**', '!public/'], {force:true});
 });
 
 gulp.task('sassy', function () {
@@ -50,16 +50,15 @@ gulp.task('sassy', function () {
 });
 
 gulp.task('optimizeImg', function() {
-
 });
 
 // Watchers --------------------------------------------------------------------
 
-gulp.task('watch', function() {
+gulp.task('watch:server', function() {
   return console.log('Watch is not yet implemented.');
   process.exit(0);
 });
 
-gulp.task('sassy:watch', function () {
+gulp.task('watch:sassy', function () {
   gulp.watch('./frontend/src/sass/**/*.scss', ['sassy']);
 });

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { User } from '../../interfaces/user';
+import { Device } from '../../interfaces/device';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthorizeService } from '../../services/authorize.service';
 import { DevicePipeService } from '../../services/device-pipe.service';
@@ -23,18 +26,12 @@ export class DashboardComponent implements OnInit {
   messageTimer: number;
 
   // Stores the user's devices to display in the table
-  public devices = [{
-    customId: 'test',
-    deviceService: 'test',
-    lastIpAddress: 'test',
-    lastStatusUpdate: 'test',
-    dateLastUpdated: 'test'
-  }];
+  devices: Device[];
 
-  constructor(private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_devicePipeService: DevicePipeService,
-              private m_router: Router) {
+  constructor(private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private devicePipeService: DevicePipeService,
+              private router: Router) {
     // Fill table with values from database
     this.updateDevices();
   }
@@ -68,12 +65,12 @@ export class DashboardComponent implements OnInit {
   }
 
   updateDevices() {
-    var user = localStorage.getItem('user');
-    this.m_devicePipeService.getUserDevices(user).subscribe(data => {
+    var user : User = JSON.parse(localStorage.getItem('user'));
+    this.devicePipeService.getUserDevices(user, null).subscribe(data => {
       if (data.success) {
         this.devices = data.devices;
       } else {
-        this.m_fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
+        this.fmService.show(data.msg, {cssClass: 'alert-danger', timeout: 6000});
       }
     });
   }

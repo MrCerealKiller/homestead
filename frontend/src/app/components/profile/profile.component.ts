@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { User } from '../../interfaces/user';
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { AuthorizeService } from '../../services/authorize.service';
 
@@ -8,28 +10,21 @@ import { AuthorizeService } from '../../services/authorize.service';
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent implements OnInit {
-  _id: String;
-  username: String;
-  email: String;
-  emailOrig: String
-  sms_number: String;
 
-  constructor(private m_fmService: FlashMessagesService,
-              private m_authService: AuthorizeService,
-              private m_router: Router) { }
+export class ProfileComponent implements OnInit {
+  user: User;
+
+  constructor(private fmService: FlashMessagesService,
+              private authService: AuthorizeService,
+              private router: Router) { }
 
   ngOnInit() {
-    this.m_authService.getUser(localStorage.getItem('user')).subscribe(data => {
-      this._id = data.profile._id;
-      this.username = data.profile.username;
-      this.email = data.profile.email;
-      this.emailOrig = data.profile.email;
-      this.sms_number = data.profile.sms_number;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.authService.getUser(this.user).subscribe(data => {
+      this.user = data.profile;
 
-      if (this.sms_number == null || this.sms_number == undefined || this.sms_number == "") {
-        console.log('get here');
-        this.sms_number = 'None Used';
+      if (this.user.sms_number == null || this.user.sms_number == undefined) {
+        this.user.sms_number = 'None Used';
       }
     });
   }

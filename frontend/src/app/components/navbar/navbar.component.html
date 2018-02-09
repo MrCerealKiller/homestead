@@ -14,12 +14,12 @@
   </ul>
 
   <ul class="navbar-list-right selectDisable">
-    <li class="navbar-button">
+    <li *ngIf="authService.isLoggedIn()" class="navbar-button">
       <a [routerLink]="['/profile']">
         <img class="selectDisable" src="/assets/img/account.png" alt="Image: Profile"/>
       </a>
     </li>
-    <li class="navbar-button">
+    <li *ngIf="authService.isLoggedIn()" class="navbar-button">
       <div class="dropdown">
         <a (click)="onSettingsClicked()">
           <img class="dropdown selectDisable" src="/assets/img/gear.png" alt="Image: settings"/>

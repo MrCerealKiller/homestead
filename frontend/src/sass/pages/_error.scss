@@ -1,0 +1,19 @@
+/**
+ * Elements Belonging to the Error Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.text-container#error-page {
+  margin: 80px auto;
+  align-content: center;
+  text-align: center;
+}
+
+.text-container#error-page img {
+  display: block;
+  margin: 0px auto;
+  padding: 16px;
+  width: 75%;
+  max-width: 212px !important;
+}

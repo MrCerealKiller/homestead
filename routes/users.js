@@ -23,7 +23,6 @@
  */
 const SECURITY_OPTS = {
   session: false,
-  failureRedirect: '/login'
 }
 
 // Imports ---------------------------------------------------------------------
@@ -47,7 +46,8 @@ const Device    = require('../models/device.js');
  * @name /devices
  * @description Devices Routes (Supports GET, POST, PUT, DELETE)
  */
-router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/devices')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {
     getDevices(req,res);
   })
@@ -67,7 +67,8 @@ router.route('/devices', passport.authenticate('jwt', SECURITY_OPTS))
  * @name /profile
  * @description Devices Routes (Supports GET, PUT, DELETE)
  */
-router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/profile')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {
     getFullProfile(req, res);
   })
@@ -79,7 +80,8 @@ router.route('/profile', passport.authenticate('jwt', SECURITY_OPTS))
   });
 
 // User Settings ---------------------------------------------------------------
-router.route('/settings', passport.authenticate('jwt', SECURITY_OPTS))
+router.route('/settings')
+  .all(passport.authenticate('jwt', SECURITY_OPTS))
   .get(function(req, res, next) {});
 
 /**
@@ -97,27 +99,47 @@ module.exports = router;
 /**
  * @inner
  * @description GET to /devices - Retrieves all a user's devices in detail
- * @param {JSON} [req] Must contain the user's username
+ * @param {JSON} [req] Must contain the user's username or contain the
+ * device ID to retrieve a single device
  * @param {JSON} [res] Contains the result {success : boolean, msg: String}
  */
 function getDevices(req, res) {
   var username = req.headers.username;
+  var id = req.headers.id;
 
-  Device.getUserDevices(username, function(err, devices) {
-    if (err || devices == null) {
-      res.json({
-        success: false,
-        msg: ('Could not retrieve devices. Error: ' + err),
-        devices: undefined
-      });
-    } else {
-      res.json({
-        success: true,
-        msg: 'Retrieved user\s devices',
-        devices: devices
-      });
-    }
-  });
+  if (id != null && id != undefined && id != "") {
+    Device.getDeviceById(id, function(err, device) {
+      if (err || device == null) {
+        res.json({
+          success: false,
+          msg: ('Could not retrieve devices. Error: ' + err),
+          device: undefined
+        });
+      } else {
+        res.json({
+          success: true,
+          msg: 'Retrieved user\s devices',
+          device: device
+        });
+      }
+    });
+  } else {
+    Device.getUserDevices(username, function(err, devices) {
+      if (err || devices == null) {
+        res.json({
+          success: false,
+          msg: ('Could not retrieve devices. Error: ' + err),
+          devices: undefined
+        });
+      } else {
+        res.json({
+          success: true,
+          msg: 'Retrieved user\s devices',
+          devices: devices
+        });
+      }
+    });
+  }
 }
 
 /**
