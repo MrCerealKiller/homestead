@@ -1,0 +1,49 @@
+/**
+ * Provides an Extra Layer of Default Properties
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+body {
+  background-color: $background-page;
+}
+
+h1, h2, h3, h4 {
+  color: $theme-color-dark;
+  font-family: $font-deco
+}
+
+p, q, a {
+  margin: $margin-standard;
+  padding: $padding-standard;
+
+  @include font($font-main, 1em, $theme-color-font);
+}
+
+p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.content-body {
+  position: relative;
+  margin-top: 48px;
+  z-index: 0;
+  min-width: 400px;
+}
+
+.title {
+  margin: 48px;
+  margin-top: 72px;
+  padding: 48px;
+
+  @include font($font-deco, 4em, $theme-color-dark);
+  text-align: center;
+}
+
+.error-title {
+  display: block;
+  padding: 50px;
+
+  @include font($font-deco, 3em, $theme-color-dark);
+}

@@ -1,0 +1,89 @@
+/**
+ * Form Elements Styles
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+.login-form {
+  padding: 64px;
+  margin: 64px auto;
+  min-width: 300px;
+  width: 20%;
+
+  background-color: $background-off;
+  box-shadow: $shadow-main;
+}
+
+.register-form {
+  margin: 64px auto;
+  padding: 64px;
+  min-width: 300px;
+  width: 20%;
+
+  background-color: $background-off;
+  box-shadow: $shadow-main;
+}
+
+.settings-form {
+  margin: 0px auto;
+  padding: $padding-standard;
+  width: 80%;
+
+  background-color: $background-off;
+}
+
+.form-element {
+  margin: 0 auto;
+  padding: $padding-standard 0;
+  width: 95%;
+}
+
+.form-label {
+  @include font($font-main, 1.2em, $theme-color-font);
+}
+
+.form-textbox {
+  box-sizing: border-box;
+  width: 100%;
+  @include font($font-main, 1.2em, $theme-color-font);
+}
+
+#form-button-stretch {
+  margin: 0;
+  padding: 16px 0px;
+  width: 100%;
+}
+
+.form-explanation {
+  margin: 0px;
+  padding: 0px;
+  @include font($font-main, 0.75em, $theme-color-font);
+}
+
+.select-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+
+  background-color: $background-off;
+}
+
+.select-wrapper select {
+  width: 100%;
+  margin: $margin-thin auto;
+  padding: ($margin-thin / 2);
+  box-sizing: border-box;
+
+  background-color: $background-off;
+  border: none;
+  border-bottom: 1px solid $theme-color-font;
+  @include font($font-main, 1em, $theme-color-font);
+}
+
+.select-wrapper option:checked, .select-wrapper option:hover {
+    box-shadow: 0 0 10px 100px $theme-color-dark inset;
+}
+
+.select-wrapper select:focus > .select-wrapper option:checked {
+    background: $theme-color-dark !important;
+}

@@ -1,0 +1,34 @@
+/**
+ * Elements Belonging to the Home Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+ .homepage-button-group {
+   display: block;
+   margin: 0 auto;
+   padding: $padding-thick;
+   width: 356px; /* TODO: Find a non-explicit was of handling this (SASS?) */
+ }
+
+#homestead-explanation {
+  padding: 64px;
+  margin: 64px 0px 0px 0px;
+
+  background-color: $background-off;
+  box-shadow: $shadow-up;
+  text-align: center;
+}
+
+#homestead-img-ascii {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include z('abs-content');
+  opacity: 0;
+
+  -webkit-animation: slowPulse 7s infinite 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation: slowPulse 7s infinite 2s;
+  animation-timing-function: ease-in-out;
+}

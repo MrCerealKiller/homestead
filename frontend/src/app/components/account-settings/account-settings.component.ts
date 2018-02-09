@@ -7,9 +7,9 @@ import { AuthorizeService } from '../../services/authorize.service';
 
 @Component({
   selector: 'app-account-settings',
-  templateUrl: './account-settings.component.html',
-  styleUrls: ['./account-settings.component.css']
+  templateUrl: './account-settings.component.html'
 })
+
 export class AccountSettingsComponent implements OnInit {
   headers: any;
   panels: any;

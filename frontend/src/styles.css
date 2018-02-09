@@ -1,115 +1,745 @@
 /**
- * Main Style sheet
- *
- * Very Generic Styles and all necessary imports
- *
+ * Styles Root
  * @author Jeremy Mallette
  * @version 1.0.0
  */
+/**
+ * SASS Mixins
+ * @author Jeremy Mallette
+ * @version 1.0.0s
+ */
+/**
+ * Tags that Give Elements Useful Properties
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300|Share+Tech+Mono");
+.show {
+  display: block !important; }
 
+.disable {
+  display: none !important; }
 
-/*  Imports
-------------------------------------------------------------------------------*/
-@import "./assets/css/navbar.css";
-@import "./assets/css/dashboard-table.css";
-@import "./assets/css/forms.css";
-@import "./assets/css/containers.css";
-@import "./assets/css/buttons.css";
-@import "./assets/css/links.css";
-@import "./assets/css/generic-classes.css";
-@import "./assets/css/modals.css";
-@import "./assets/css/flash-messages.css";
-@import "./assets/css/tooltips.css";
-@import "./assets/css/collapsibles.css";
-@import "./assets/css/simple-animations.css";
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300|Share+Tech+Mono');
+.left {
+  float: left; }
 
-/*  Generic Styles
-------------------------------------------------------------------------------*/
+.right {
+  float: right; }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+.selectDisable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.selectEnable {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text; }
+
+/**
+ * Global Variables
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+/**
+ * Resets Possibly Varying Browser Defaults
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, button, select,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline; }
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
 
 html {
   min-width: 100%;
-  height: 100%;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
+  height: 100%; }
 
 body {
-  margin: 0;  /* Fixes bug... */
-  padding: 0; /* Somehow didn't inherit from all... */
+  line-height: 1; }
 
-  background-color: #DCDCDC;
-}
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/**
+ * Provides an Extra Layer of Default Properties
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+body {
+  background-color: #DCDCDC; }
 
 h1, h2, h3, h4 {
   color: #DC143C;
-  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
-}
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace; }
 
 p, q, a {
   margin: 16px;
   padding: 16px;
-
-  color: #151515;
   font-family: "Montserrat", helvetica, sans-serif;
   font-size: 1em;
-}
+  color: #151515; }
 
 p {
   word-break: break-word;
-  overflow-wrap: break-word;
-}
-
-/*  Misc. Classes
-------------------------------------------------------------------------------*/
+  overflow-wrap: break-word; }
 
 .content-body {
   position: relative;
-  margin-top: 48px;     /* Prevent overflow into fixed navbar */
+  margin-top: 48px;
   z-index: 0;
-  min-width: 400px;
-}
+  min-width: 400px; }
 
 .title {
   margin: 48px;
   margin-top: 72px;
   padding: 48px;
-
-  color: #DC143C;
   font-family: "Share Tech Mono", "Courier New", Courier, monospace;
   font-size: 4em;
-  /*font-style: italic; /* TODO : Maybe change? Design choice */
-  text-align: center;
-}
+  color: #DC143C;
+  text-align: center; }
 
 .error-title {
   display: block;
   padding: 50px;
-
-  color: #DC143C;
   font-family: "Share Tech Mono", "Courier New", Courier, monospace;
-}
+  font-size: 3em;
+  color: #DC143C; }
 
-/* Misc. Object
-------------------------------------------------------------------------------*/
+/**
+ * Default Typography Settings
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.small-font {
+  font-size: 0.8em !important; }
 
-#particles {
-  position: absolute;
+/**
+ * Import Boostrap Functionality
+ * @author Jeremy Mallette
+ * @version 0.0.0
+ */
+/**
+ * Generic Containers
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.container {
+  margin: 16px auto;
+  padding: 16px;
+  text-align: center;
+  align-content: center; }
+
+.text-container {
+  width: 80%;
+  margin: 16px auto;
+  padding: 16px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.backdrop-img {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.dual-vertical-container {
+  display: inline-block;
+  margin: 0px auto;
+  padding: 16px;
+  width: 40%;
+  text-align: center;
+  align-content: center; }
+
+.dual-vertical-container img {
+  display: block;
+  margin: 0px auto;
+  padding: 16px;
+  width: 75%;
+  max-width: 312px !important;
+  text-align: center;
+  align-content: center; }
+
+/**
+ * Form Elements Styles
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.login-form {
+  padding: 64px;
+  margin: 64px auto;
+  min-width: 300px;
+  width: 20%;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.register-form {
+  margin: 64px auto;
+  padding: 64px;
+  min-width: 300px;
+  width: 20%;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.settings-form {
+  margin: 0px auto;
+  padding: 16px;
+  width: 80%;
+  background-color: #F2F2F2; }
+
+.form-element {
+  margin: 0 auto;
+  padding: 16px 0;
+  width: 95%; }
+
+.form-label {
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1.2em;
+  color: #151515; }
+
+.form-textbox {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1.2em;
+  color: #151515; }
+
+#form-button-stretch {
+  margin: 0;
+  padding: 16px 0px;
+  width: 100%; }
+
+.form-explanation {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 0.75em;
+  color: #151515; }
+
+.select-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  background-color: #F2F2F2; }
+
+.select-wrapper select {
+  width: 100%;
+  margin: 8px auto;
+  padding: 4px;
+  box-sizing: border-box;
+  background-color: #F2F2F2;
+  border: none;
+  border-bottom: 1px solid #151515;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #151515; }
+
+.select-wrapper option:checked, .select-wrapper option:hover {
+  box-shadow: 0 0 10px 100px #DC143C inset; }
+
+.select-wrapper select:focus > .select-wrapper option:checked {
+  background: #DC143C !important; }
+
+/**
+ * Navbar Style and Functionality
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.navbar {
+  display: block;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: -99;
+  z-index: 9999;
   width: 100%;
-  height: calc(100% - 500px);
-}
+  min-width: 350px;
+  height: 48px;
+  background-color: #DC143C;
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.navbar-list-left {
+  float: left;
+  margin: 0;
+  padding: 0;
+  padding-left: 16px;
+  height: 48px; }
+
+.navbar-list-right {
+  float: right;
+  margin: 0;
+  padding: 0;
+  padding-right: 16px;
+  height: 48px; }
+
+.navbar-button {
+  display: inline; }
+
+.navbar-button a {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  width: 48px;
+  height: 48px;
+  text-decoration: none; }
+
+.navbar-list-right a:hover {
+  background-color: #F6CECE; }
+
+.navbar-button img {
+  display: inline;
+  width: 48px;
+  height: 48px; }
+
+.navbar-button #navbar-title {
+  position: relative;
+  top: -30%;
+  height: 48px;
+  padding-left: 8px;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-size: 24px;
+  color: #FFFFFF;
+  font-style: normal;
+  text-align: left; }
+
+#navbar-dropdown {
+  right: 0; }
+
+/**
+ * Alerts - Customizing the Flash Messages Module
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.flash-message {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  z-index: 999999;
+  margin: 16px auto;
+  width: 90%;
+  align-content: center;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.flash-message p {
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #151515;
+  text-align: center; }
+
+.flash-message:hover {
+  opacity: 0.2; }
+
+.alert-danger {
+  background-color: #F2DEDE; }
+
+.alert-warning {
+  background-color: #FCF8E3; }
+
+.alert-info {
+  background-color: #D9EDF7; }
+
+.alert-normal {
+  background-color: #F2F2F2; }
+
+.alert-success {
+  background-color: #DFF0D8; }
+
+#grayOutDiv {
+  background-color: #333;
+  opacity: 0.7;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  z-index: 99999; }
+
+/**
+ * Various Buttons
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.button-dark {
+  display: inline-block;
+  border: none;
+  min-width: 100px;
+  margin: 8px;
+  padding: 16px;
+  background-color: #DC143C;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #FFFFFF;
+  cursor: pointer; }
+
+.button-dark:hover {
+  background-color: #F6CECE;
+  color: #151515; }
+
+.button-light {
+  display: inline-block;
+  border: none;
+  min-width: 100px;
+  margin: 8px;
+  padding: 16px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #151515;
+  cursor: pointer; }
+
+.button-light:hover {
+  background-color: #F6CECE; }
+
+/**
+ * Collapsible Content
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.collapse-header {
+  padding: 16px;
+  width: 100%;
+  background-color: #F2F2F2;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1.2em;
+  color: #151515;
+  text-decoration: none;
+  transition: 0.2s; }
+
+.active-header, .collapse-header:hover {
+  background-color: #DC143C;
+  color: #FFFFFF; }
+
+.collapse-panel {
+  padding: 0 16px;
+  max-height: 0;
+  overflow: hidden;
+  background-color: #F2F2F2;
+  transition: max-height 0.2s ease-out; }
+
+/**
+ * Custom Dropdown Menus
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer; }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  min-width: 200px;
+  margin-top: 10px;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+.dropbutton {
+  display: block;
+  border: none;
+  width: 100%;
+  padding: 16px;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #151515;
+  background-color: #F2F2F2;
+  text-decoration: none;
+  cursor: pointer; }
+
+.dropbutton:hover {
+  background-color: #F6CECE; }
+
+/**
+ * Default Link Format
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+a:hover {
+  color: #F6CECE;
+  text-decoration: none; }
+
+a:active {
+  color: #DC143C;
+  text-decoration: none; }
+
+a:visited {
+  color: #151515;
+  text-decoration: none; }
+
+/**
+ * Modals Support
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.4); }
+
+.modal-content {
+  z-index: 999999;
+  margin: 20% auto;
+  padding: 32px;
+  width: 80%;
+  background-color: #F2F2F2;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); }
+
+/**
+ * Tooltips Support
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.tooltip {
+  position: relative;
+  display: inline-block; }
+
+.tooltip .tooltip-text {
+  position: absolute;
+  z-index: 999999;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  padding: 5px 0;
+  visibility: hidden;
+  min-width: 120px;
+  background-color: #F2F2F2;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 1em;
+  color: #151515;
+  text-align: center;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s; }
+
+.tooltip .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #F2F2F2 transparent transparent transparent; }
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1; }
+
+/**
+ * Elements Belonging to the About Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.text-container#about-page {
+  margin: 80px auto; }
+
+.text-container#about-page h2, h3, h4 {
+  margin-top: 16px;
+  text-align: center;
+  align-content: center; }
+
+/**
+ * Elements Belonging to the Dashboard Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.dashboard-table {
+  margin: 50px auto;
+  padding: 50px;
+  overflow: auto;
+  width: 90%;
+  outline: 4px solid #DC143C;
+  border-collapse: collapse;
+  border-spacing: 0px; }
+
+.dashboard-table .dashboard-table-header {
+  padding: 16px;
+  background-color: #DC143C;
+  color: #FFFFFF;
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-size: 18px;
+  text-align: center; }
+
+.dashboard-table-row {
+  cursor: pointer; }
+
+.dashboard-table .dashboard-table-cell {
+  padding: 16px;
+  font-family: "Montserrat", helvetica, sans-serif;
+  font-size: 0.8em;
+  color: #151515;
+  text-align: center; }
+
+.dashboard-table .dashboard-table-row:nth-child(even) {
+  background-color: #F2F2F2; }
+
+.dashboard-table .dashboard-table-row:hover {
+  background-color: #F6CECE; }
+
+/**
+ * Elements Belonging to the Home Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.homepage-button-group {
+  display: block;
+  margin: 0 auto;
+  padding: 32px;
+  width: 356px;
+  /* TODO: Find a non-explicit was of handling this (SASS?) */ }
 
 #homestead-explanation {
   padding: 64px;
   margin: 64px 0px 0px 0px;
-
   background-color: #F2F2F2;
-  box-shadow: 0px -8px 16px 0px rgba(0,0,0,0.2);
-  text-align: center;
-}
+  box-shadow: 0px -8px 16px 0px rgba(0, 0, 0, 0.2);
+  text-align: center; }
+
+#homestead-img-ascii {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  -webkit-animation: slowPulse 7s infinite 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation: slowPulse 7s infinite 2s;
+  animation-timing-function: ease-in-out; }
+
+/**
+ * Elements Belonging to the Profile Page
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+.text-container#profile-page {
+  margin: 80px auto;
+  max-width: 624px; }
+
+.text-container#profile-page p {
+  margin: 0px auto;
+  padding: 0px; }
+
+/**
+ * Simple CSS Animations
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+@keyframes slowPulse {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0.4; }
+  100% {
+    opacity: 0; } }
+
+@keyframes fade {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+.fade-in {
+  opacity: 0;
+  -webkit-animation: fade 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: normal;
+  animation: fade 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-direction: normal; }
+
+.fade-out {
+  opacity: 1;
+  -webkit-animation: fade 1s;
+  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: reverse;
+  animation: fade 1s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  animation-direction: reverse; }
+
+.fade-in-out {
+  opacity: 0;
+  -webkit-animation: fade 3s 2;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-direction: reverse;
+  -webkit-animation-direction: alternate;
+  animation: fade 3s 2;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-direction: alternate; }
+
+/**
+ * Configure a Div to Hold Particles.js
+ * @author Jeremy Mallette
+ * @version 0.0.0
+ */
+/**
+ * Shaaaaaaaaaaaaame....
+ * Put sketchy fixes here ________
+ */

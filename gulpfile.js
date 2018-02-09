@@ -2,7 +2,8 @@
 // ## !!! WORK IN PROGRESS !!! ##
 // ##############################
 
-const gulp = require('gulp');
+const gulp     = require('gulp');
+const sass     = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
 
 // High-level ------------------------------------------------------------------
@@ -42,11 +43,23 @@ gulp.task('clean', function() {
   process.exit(0);
 });
 
+gulp.task('sassy', function () {
+  return gulp.src('./frontend/src/sass/styles.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./frontend/src/'));
+});
+
 gulp.task('optimizeImg', function() {
 
 });
 
+// Watchers --------------------------------------------------------------------
+
 gulp.task('watch', function() {
   return console.log('Watch is not yet implemented.');
   process.exit(0);
+});
+
+gulp.task('sassy:watch', function () {
+  gulp.watch('./frontend/src/sass/**/*.scss', ['sassy']);
 });

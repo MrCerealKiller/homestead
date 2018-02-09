@@ -1,23 +1,19 @@
 /**
- * Tooltips
- *
- * CSS configuring the position, function, and style of tooltips (shown on
- * hover)
- *
+ * Tooltips Support
  * @author Jeremy Mallette
  * @version 1.0.0
  */
 
-/* Tooltip Container ---------------------------------------------------------*/
+// Tooltip Container
 .tooltip {
   position: relative;
   display: inline-block;
 }
 
-/* Tooltip -------------------------------------------------------------------*/
+// Tooltip
 .tooltip .tooltip-text {
   position: absolute;
-  z-index: 1;
+  @include z('tooltips');
   bottom: 125%;
   left: 50%;
   margin-left: -60px;
@@ -25,18 +21,17 @@
 
   visibility: hidden;
   min-width: 120px;
-  background-color: #F2F2F2;
-  color: #151515;
-  font-family: "Montserrat", helvetica, sans-serif;
-  font-size: 1em;
+  background-color: $background-off;
+  @include font($font-main, 1em, $theme-color-font);
   text-align: center;
 
-  /* Fade */
+  // Fade
   opacity: 0;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
 
+// Tooltip Tail
 .tooltip .tooltip-text::after {
   content: "";
   position: absolute;
@@ -46,7 +41,7 @@
 
   border-width: 5px;
   border-style: solid;
-  border-color: #F2F2F2 transparent transparent transparent;
+  border-color: $background-off transparent transparent transparent;
 }
 
 .tooltip:hover .tooltip-text {

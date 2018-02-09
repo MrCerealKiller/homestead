@@ -1,0 +1,42 @@
+/**
+ * Custom Dropdown Menus
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+
+// Aligned left by default
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  @include z(dropdown);
+  min-width: 200px;
+  margin-top: 10px;
+
+  background-color: $background-off;
+  box-shadow: $shadow-main;
+}
+
+.dropbutton {
+  display: block;
+  border: none;
+  width: 100%;
+  padding: $padding-standard;
+
+  @include font($font-main, 1em, $theme-color-font);
+  background-color: $background-off;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dropbutton:hover {
+  background-color: $theme-color-light;
+}
