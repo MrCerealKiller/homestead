@@ -6,13 +6,13 @@
 
 @charset "UTF-8";
 
-@import 'base/reset';
-@import 'base/base';
-@import 'base/typography';
-
 @import 'abstract/mixins';
 @import 'abstract/tags';
 @import 'abstract/variables';
+
+@import 'base/reset';
+@import 'base/base';
+@import 'base/typography';
 
 @import 'vendors/bootstrap';
 

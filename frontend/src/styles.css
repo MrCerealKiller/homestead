@@ -4,11 +4,57 @@
  * @version 1.0.0
  */
 /**
- * Resets Possibly Varying Browser Defaults
+ * SASS Mixins
+ * @author Jeremy Mallette
+ * @version 1.0.0s
+ */
+/**
+ * Tags that Give Elements Useful Properties
  * @author Jeremy Mallette
  * @version 1.0.0
  */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Share+Tech+Mono");
+.show {
+  display: block !important; }
+
+.disable {
+  display: none !important; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+.selectDisable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
+
+.selectEnable {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -o-user-select: text;
+  user-select: text; }
+
+/**
+ * Global Variables
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
+/**
+ * Resets Possibly Varying Browser Defaults
+ * @author Jeremy Mallette
+ * @version 1.0.0
+ */
 * {
   margin: 0;
   padding: 0; }
@@ -73,9 +119,9 @@ h1, h2, h3, h4 {
 p, q, a {
   margin: 16px;
   padding: 16px;
-  color: #151515;
   font-family: "Montserrat", helvetica, sans-serif;
-  font-size: 1em; }
+  font-size: 1em;
+  color: #151515; }
 
 p {
   word-break: break-word;
@@ -91,16 +137,17 @@ p {
   margin: 48px;
   margin-top: 72px;
   padding: 48px;
-  color: #DC143C;
   font-family: "Share Tech Mono", "Courier New", Courier, monospace;
   font-size: 4em;
+  color: #DC143C;
   text-align: center; }
 
 .error-title {
   display: block;
   padding: 50px;
-  color: #DC143C;
-  font-family: "Share Tech Mono", "Courier New", Courier, monospace; }
+  font-family: "Share Tech Mono", "Courier New", Courier, monospace;
+  font-size: 3em;
+  color: #DC143C; }
 
 /**
  * Default Typography Settings
@@ -110,52 +157,6 @@ p {
 .small-font {
   font-size: 0.8em !important; }
 
-/**
- * SASS Mixins
- * @author Jeremy Mallette
- * @version 1.0.0s
- */
-/**
- * Tags that Give Elements Useful Properties
- * @author Jeremy Mallette
- * @version 1.0.0
- */
-.show {
-  display: block !important; }
-
-.disable {
-  display: none !important; }
-
-.left {
-  float: left; }
-
-.right {
-  float: right; }
-
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table; }
-
-.selectDisable {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
-
-.selectEnable {
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -o-user-select: text;
-  user-select: text; }
-
-/**
- * Global Variables
- * @author Jeremy Mallette
- * @version 1.0.0
- */
 /**
  * Import Boostrap Functionality
  * @author Jeremy Mallette
