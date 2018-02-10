@@ -11,7 +11,8 @@
 // Imports ---------------------------------------------------------------------
 const mongoose  = require('mongoose');
 const db_config = require('../config/database.js');
-// const dataSchema = require('./data.js');
+
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 // Create Models ---------------------------------------------------------------
 /**
@@ -28,8 +29,8 @@ const deviceSchema = mongoose.Schema({
     required: true
   },
   user: {
-    type: String,
-    trim: true,
+    type: ObjectId,
+    ref: 'User',
     required: true
   },
   service: {
@@ -51,32 +52,32 @@ const deviceSchema = mongoose.Schema({
     type: String,
     trim: true,
     default: 'Offline',
-    // enum: [
-    //   'Online',
-    //   'Offline',
-    //   'Warning',
-    //   'Critical',
-    //   'Reconnecting'
-    // ],
+    enum: [
+      'Online',
+      'Offline',
+      'Warning',
+      'Critical',
+      'Reconnecting'
+    ],
     required: true
+  },
+  handshake: {
+    type: String,
+    trim: true,
+    required: false
+  },
+  data: [{
+    type: ObjectId,
+    ref: 'Data',
+    required: false
+  }],
+  dataLimit: {
+    type: Number,
+    min: 1,
+    max: 100,
+    required: true,
   }
-  // handshake: {
-  //   type: String,
-  //   trim: true,
-  //   required: false
-  // },
-  // data: [dataSchema],
-  // dataLimit: {
-  //   type: number,
-  //   min: 1,
-  //   max: 100,             // TODO : Change in production
-  //   required: true,
-  // }
 }, {timestamps: true});
-
-// deviceSchema.methods.updateCustomData = function(update, callback) {
-//   this.data
-// }
 
 /**
  * @inner
@@ -102,7 +103,7 @@ module.exports.getDeviceById = function(id, callback) {
  * @inner
  * @description Retrieves a single device by it's custom ID and places
  * it within an object in the callback
- * @param {String} [id] The user's custom id assigned to the required device
+ * @param {String} [cid] The user's custom id assigned to the required device
  * @param {function} [callback] A callback function to which MongoDb sends the
  * device info
  * @deprecated Not ready for use yet (Possibly not necessary)

@@ -1,7 +1,7 @@
 /**
  * @file Non-user-specific, unsecured backend routes.
  * @author Jeremy Mallette
- * @version 0.0.2
+ * @version 1.0.0
  * @module Routes/Open
  * @see {@link module:Routes/User} for protected routes
  *
@@ -81,7 +81,7 @@ function registerUser(req, res) {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    sms_number: req.body.sms_number
+    sms: req.body.sms
   });
 
   // Check is Username is already taken

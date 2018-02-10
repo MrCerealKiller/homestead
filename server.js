@@ -108,9 +108,9 @@ app.use('/', index);
 app.use('/users', users);
 
 // Fallback to index.html ------------------------------------------------------
-app.use(function(req, res) {
-    res.sendFile(staticPath + '/index.html');
-});
+// app.use(function(req, res) {
+//     res.sendFile(staticPath + '/index.html');
+// });
 
 // Listen to Port --------------------------------------------------------------
 app.listen(app.get('port'), function() {

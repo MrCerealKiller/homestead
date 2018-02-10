@@ -1,7 +1,7 @@
 /**
  * @file User-specific, secured backend routes
  * @author Jeremy Mallette
- * @version 0.0.2
+ * @version 1.0.0
  * @module Routes/User
  * @see {@link module:Routes/Open} for unprotected routes
  *
@@ -104,7 +104,7 @@ module.exports = router;
  * @param {JSON} [res] Contains the result {success : boolean, msg: String}
  */
 function getDevices(req, res) {
-  var username = req.headers.username;
+  var user = req.headers.user;
   var id = req.headers.id;
 
   if (id != null && id != undefined && id != "") {
@@ -112,19 +112,19 @@ function getDevices(req, res) {
       if (err || device == null) {
         res.json({
           success: false,
-          msg: ('Could not retrieve devices. Error: ' + err),
+          msg: ('Could not retrieve device. Error: ' + err),
           device: undefined
         });
       } else {
         res.json({
           success: true,
-          msg: 'Retrieved user\s devices',
+          msg: 'Retrieved requested device',
           device: device
         });
       }
     });
   } else {
-    Device.getUserDevices(username, function(err, devices) {
+    User.getUserDevices(user, function(err, devices) {
       if (err || devices == null) {
         res.json({
           success: false,
@@ -150,12 +150,13 @@ function getDevices(req, res) {
  */
 function addDevice(req, res) {
   var newDevice = new Device({
-    customId: req.body.customId,
+    cid: req.body.cid,
     user: req.body.user,
-    deviceService: req.body.deviceService,
-    lastIpAddress: req.body.lastIpAddress,
-    lastStatusUpdate: req.body.lastStatusUpdate,
-    //dateLastUpdated: Date()
+    service: req.body.service,
+    ip: req.body.ip,
+    port: req.body.port,
+    handshake: req.body.handshake,
+    dataLimit: req.body.dataLimit
   });
 
   Device.addDevice(newDevice, function(err, device) {
@@ -165,9 +166,23 @@ function addDevice(req, res) {
         msg: 'Could not save device. Error: ' + err
       });
     } else {
-      res.json({
-        success: true,
-        msg: device.customId + ' was saved.'
+      User.addDevice(device, function(err, user) {
+        if (err || user == null) {
+          Device.removeDeviceById(device._id, function(err) {
+            if (err) {
+              throw err;
+            }
+          });
+          res.json({
+            success: false,
+            msg: 'Could not fully save the device. Contact admin. Error: ' + err
+          });
+        } else {
+          res.json({
+            success: true,
+            msg: device.cid + ' was saved.'
+          });
+        }
       });
     }
   });
@@ -182,12 +197,13 @@ function addDevice(req, res) {
 function updateDevice(req, res) {
   var update = new Device({
     _id: req.body._id,
-    customId: req.body.customId,
+    cid: req.body.cid,
     user: req.body.user,
-    deviceService: req.body.deviceService,
-    lastIpAddress: req.body.lastIpAddress,
-    lastStatusUpdate: req.body.lastStatusUpdate,
-    //dateLastUpdated: Date()
+    service: req.body.service,
+    ip: req.body.ip,
+    port: req.body.port,
+    handshake: req.body.handshake,
+    dataLimit: req.body.dataLimit
   });
 
   Device.updateDeviceById(update, function(err, device) {
@@ -199,7 +215,7 @@ function updateDevice(req, res) {
     } else {
       res.json({
         success: true,
-        msg: device.customId + ' was saved.'
+        msg: device.cid + ' was saved.'
       });
     }
   });
@@ -223,7 +239,7 @@ function deleteDevice(req, res) {
     } else {
       res.json({
         success: true,
-        msg: device.customId + ' was deleted.'
+        msg: device.cid + ' was deleted.'
       });
     }
   });
@@ -269,7 +285,7 @@ function updateProfile(req, res) {
     _id: req.body._id,
     email: req.body.email,
     isEmailUpdate: req.body.isEmailUpdate,
-    sms_number: req.body.sms_number
+    sms: req.body.sms
   };
 
   // Check is email is already in use
