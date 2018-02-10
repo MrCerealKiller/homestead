@@ -1,7 +1,7 @@
 /**
  * @file Model for Users as stored on the database
  * @author Jeremy Mallette
- * @version 0.0.1
+ * @version 1.0.0
  * @module Models/User
  *
  * @requires module:Mongoose
@@ -13,6 +13,8 @@
 const mongoose  = require('mongoose');
 const bcrypt    = require('bcryptjs');
 const db_config = require('../config/database.js');
+
+const ObjectId  = mongoose.Schema.Types.ObjectId;
 
 // Create Model ----------------------------------------------------------------
 /**
@@ -38,7 +40,12 @@ const userSchema = mongoose.Schema({
     sms: {
         type: Number,
         required: false
-    }
+    },
+    devices: [{
+      type: ObjectId,
+      ref: 'Device',
+      required: false
+    }]
 });
 
 /**
@@ -109,6 +116,71 @@ module.exports.addUser = function(user, callback) {
     });
 };
 
+// Manage Devices --------------------------------------------------------------
+/**
+ * @inner
+ * @description Adds a user's device to its device list.
+ * @param {Object} [device] An device that corresponds to the device schema
+ * @param {function} [callback] A callback function that indicates success or
+ * failure
+ */
+module.exports.addDevice = function(device, callback) {
+  User.getUserById(device.user, function(err, user) {
+    if (err) {
+      throw err;
+    }
+
+    if (user == null) {
+      callback('Could not find user.', null);
+    }
+
+    user.devices.push(device);
+    user.save(callback);
+  });
+};
+
+/**
+ * @inner
+ * @description Retrieves a list of user devices
+ * @param {String} [id] The unique generated id used by MongoDb of the required
+ * user
+ * @param {function} [callback] A callback function to which MongoDb sends the
+ * user info
+ */
+module.exports.getUserDevices = function(id, callback) {
+  User.findById(id)
+      .populate('devices')
+      .exec(function(err, user) {
+    if (err) {
+      throw err;
+    }
+
+    callback(null, user.devices);
+  });
+};
+
+/**
+ * @inner
+ * @description Removes a device from a user's device list.
+ * @param {Object} [device] An device that corresponds to the device schema
+ * @param {function} [callback] A callback function that indicates success or
+ * failure
+ */
+module.exports.removeDevice = function(device, callback) {
+  User.getUserById(device.user, function(err, user) {
+    if (err) {
+      throw err;
+    }
+
+    if (user == null) {
+      callback('Could not find user.', null);
+    }
+
+    user.devices.pull(device);
+    user.save(callback);
+  });
+};
+
 // Check Password --------------------------------------------------------------
 /**
  * @inner
@@ -142,6 +214,10 @@ module.exports.updateUserById = function(user, callback) {
   User.findById(user._id, function(err, dbUser) {
     if (err) {
       throw err;
+    }
+
+    if (dbUser == null) {
+      callback('Could not find user.', null);
     }
 
     dbUser.email = user.email;
@@ -189,6 +265,10 @@ module.exports.removeUserById = function(id, callback) {
   User.findById(id, function(err, user) {
     if (err) {
       throw err;
+    }
+
+    if (user == null) {
+      callback('Could not find user.', null);
     }
 
     user.remove(callback);
